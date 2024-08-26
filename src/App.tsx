@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import MobileNavigator from './components/navs/MobileNav/MobileNavigator'
+import { Navigator } from './components/navigator'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <MobileNavigator/>
+      <Navigator/>
     </>
   )
 }
