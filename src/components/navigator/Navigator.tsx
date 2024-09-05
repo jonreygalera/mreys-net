@@ -4,27 +4,32 @@ import IconButton from '../buttons/IconButton/IconButton';
 import Avatar from '../icons/Avatar';
 import Profile from '../../data/profile';
 import { NavigatorItem } from '../../interface';
+import { useNavigate } from 'react-router-dom';
 
 const NAVIGATOR_ITEMS : NavigatorItem[] = [
-  { key:"nav-item-home", label: 'Home', icon: HomeIcon, path: 'home' },
+  { key:"nav-item-home", label: 'Home', icon: HomeIcon, path: '/' },
   { key:"nav-item-ideas", label: 'Ideas', icon: PuzzlePieceIcon, path: 'ideas' },
   { key:"nav-item-talk", label: 'Talk', icon: ChatBubbleLeftRightIcon },
   { key:"nav-item-others", label: 'Others', icon: EllipsisHorizontalCircleIcon, path: 'others'  },
 ];
 
-const PROFILE_NAVIGATOR_ITEM : NavigatorItem = { key:"nav-item-profile", label: 'Profile', icon: Avatar, path: 'profile' };
+const navItemTalkClassNameDefault ="bg-primary-900";
+const navItemTalkClassNameSelected = "bg-primary-800";
+
+const PROFILE_NAVIGATOR_ITEM : NavigatorItem = { key:"nav-item-profile", label: 'Profile', icon: Avatar, path: 'me' };
 
 const Navigator : React.FC = () => {
   const [ selectedNavigatorItem, setSelectedNavigatorItem ] = useState<NavigatorItem>(NAVIGATOR_ITEMS[0]);
 
-  const navItemTalkClassNameDefault ="bg-primary-900";
-  const navItemTalkClassNameSelected = "bg-primary-800";
+  const navigate = useNavigate();
 
   function onHandleNavigatorSelected(navItemValue : NavigatorItem) {
     setSelectedNavigatorItem(navItemValue);
     if(navItemValue.key === "nav-item-talk") {
       alert("Talk with me!");
     }
+    console.log(navItemValue)
+    navigate(navItemValue.path ?? '');
   }
 
   return (
@@ -53,7 +58,7 @@ const Navigator : React.FC = () => {
           className: `size-6 ${(selectedNavigatorItem.key === PROFILE_NAVIGATOR_ITEM.key) ? " border-primary-50 border-2" : " border-primary-400 border"}`, 
           src: Profile.avatar
         }}
-        onClick={(event) => setSelectedNavigatorItem(PROFILE_NAVIGATOR_ITEM)}
+        onClick={(event) => onHandleNavigatorSelected(PROFILE_NAVIGATOR_ITEM)}
         isSelected={selectedNavigatorItem.key === PROFILE_NAVIGATOR_ITEM.key}
       />
     </nav>

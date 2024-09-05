@@ -1,16 +1,7 @@
 import React from "react";
+import { classNameType } from "../../../types";
+import { IconButtonProps } from "../../../interface";
 
-type classNameType = false|string|null|string[];
-
-type IconButtonProps = { 
-  label: string;
-  IconComponent: any; 
-  IconComponentProps: any;
-  isSelected?: boolean;
-  classNameDefault?: classNameType;
-  classNameSelected?: classNameType;
-  onClick: (event: any)  => void;
-}
 
 function processDefaultDivOuterContainerClassName(currentClassName : string[], classNameDefault : classNameType) {
   if(classNameDefault) {
