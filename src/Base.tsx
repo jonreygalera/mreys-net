@@ -1,10 +1,7 @@
-import { useState } from 'react'
 import { Navigator } from './components/navigator'
 import { Outlet } from 'react-router-dom'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const Base = () => {
   return (
     <>
       <Outlet/>
@@ -13,4 +10,4 @@ function App() {
   )
 }
 
-export default App
+export default Base;

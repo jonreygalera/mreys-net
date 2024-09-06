@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { HomePage, IdeasPage, OthersPage, ProfilePage } from "../pages";
-import App from "../App";
+import App from "../Base";
 
 const webRoutes = [
   {
