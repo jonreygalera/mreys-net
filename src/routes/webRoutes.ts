@@ -1,6 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
-import { HomePage, IdeasPage, OthersPage, ProfilePage } from "../pages";
-import App from "../Base";
+import { HomePage, IdeasPage, OthersPage, ProfilePage, TalkPage } from "../pages";
 
 const webRoutes = [
   {
@@ -10,6 +8,10 @@ const webRoutes = [
   {
     path: 'ideas',
     element: IdeasPage
+  },
+  {
+    path: 'talk',
+    element: TalkPage
   },
   {
     path: 'others',
