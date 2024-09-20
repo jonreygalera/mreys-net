@@ -17,7 +17,7 @@ function processDefaultDivOuterContainerClassName(currentClassName : string[], c
 function processSelectedDivOuterContainerClassName(currentClassName : string[], classNameDefault : classNameType, defaultClassName = "border-b border-primary-50") {
   if(classNameDefault) {
     if(typeof classNameDefault === 'string') {
-      currentClassName.push(classNameDefault);
+      currentClassName.push(classNameDefault);       
     } else {
       currentClassName.push(classNameDefault.join(" "));
     }

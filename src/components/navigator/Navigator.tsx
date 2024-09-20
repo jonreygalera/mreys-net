@@ -28,13 +28,12 @@ const Navigator : React.FC = () => {
     if(navItemValue.key === "nav-item-talk") {
       alert("Talk with me!");
     }
-    console.log(navItemValue)
     navigate(navItemValue.path ?? '');
   }
 
   return (
-   <div className="fixed bottom-0 left-0 w-full">
-     <nav className="flex justify-around rounded-t-xl border-1 border-t-primary-500 bg-primary-950 px-4">
+   <div className="fixed bottom-1 left-3 md:left-20 mx-1 w-11/12 md:w-9/10">
+     <nav className="flex justify-around rounded-full border-1 border-t-primary-500 bg-primary-950 p-2">
       {
         NAVIGATOR_ITEMS.map((navItemValue, navItemKey) => (
           <IconButton
