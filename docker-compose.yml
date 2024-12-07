@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  mreys-net:
+    build: 
+      dockerfile: Dockerfile
+      context: .
+    container_name: mreys-net
+    restart: always
+    volumes:
+      - ./src:/app

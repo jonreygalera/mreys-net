@@ -1,0 +1,30 @@
+[
+  {
+    "projectId": 1,
+    "techStackId": 1
+  },
+  {
+    "projectId": 1,
+    "techStackId": 2
+  },
+  {
+    "projectId": 1,
+    "techStackId": 1
+  },
+  {
+    "projectId": 1,
+    "techStackId": 3
+  },
+  {
+    "projectId": 1,
+    "techStackId": 4
+  },
+  {
+    "projectId": 1,
+    "techStackId": 5
+  },
+  {
+    "projectId": 1,
+    "techStackId": 6
+  }
+]
