@@ -9,3 +9,9 @@ services:
     restart: always
     volumes:
       - ./src:/app
+    networks:
+      - docker-nginx_proxy-network
+
+networks:
+  docker-nginx_proxy-network:
+    external: true
