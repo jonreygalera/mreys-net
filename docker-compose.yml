@@ -9,6 +9,7 @@ services:
     restart: always
     volumes:
       - ./src:/app
+      - /app/node_modules
     networks:
       - docker-nginx_proxy-network
 
