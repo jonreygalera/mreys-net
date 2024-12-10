@@ -1,5 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import Box from '../box/Box';
+import {
+  XMarkIcon
+} from '@heroicons/react/24/outline';
 
 interface DialogProps extends PropsWithChildren {
   isOpen: boolean;
@@ -15,17 +18,17 @@ const Dialog: React.FC<DialogProps> = (props) => {
 
   return (
     <Box className="fixed inset-0 z-50 flex items-center justify-center bg-primary-950 bg-opacity-50">
-      <Box className="bg-primary-50 rounded-lg shadow-lg w-full max-w-7xl p-6 animate-fade-in">
+      <Box className="bg-primary-50 rounded-lg shadow-lg w-full max-w-7xl animate-fade-in">
         {/* Header */}
         {title && (
           <Box className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-primary-900">{title}</h2>
+            <h2 className="text-lg font-semibold text-primary-900 mr-2">{title}</h2>
             <button
               onClick={onClose}
-              className="text-primary-400 hover:text-primary-700 focus:outline-none"
+              className="text-primary-400 hover:text-primary-700 focus:outline-none bg-primary-950 rounded-se-md rounded-es-md p-1"
               aria-label="Close dialog"
             >
-              ✕
+              <XMarkIcon className='size-7'/>
             </button>
           </Box>
         )}
