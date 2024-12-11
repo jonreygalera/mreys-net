@@ -54,7 +54,7 @@ const Navigation: React.FC<INavigationProps> = (props) => {
               >
                 <Typography 
                   className={
-                    tailwindUtil('text-primary-700', activeItem?.index === childIdx && 'text-primary-400')
+                    tailwindUtil('text-primary-700 transition-all', activeItem?.index === childIdx && 'text-primary-400')
                   }
                 >
                   {label}

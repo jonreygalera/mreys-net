@@ -3,17 +3,19 @@ import Box from './components/box/Box';
 import Navigator from './features/navigator/Navigator';
 import OutletLayout from './components/layout/OutletLayout';
 import Typography from './components/typography/Typography';
+import ScrollIndicator from './components/scrollIndicator/ScrollIndicator';
 
 const Base = () => {
   return (
     <Box
       className='flex flex-col'
     >
-      <Box
+      <ScrollIndicator/>
+      {/* <Box
         className='bg-primary-950 text-yellow-400 top-0 z-50 px-5 sticky w-full'
       >
         # ONGOING
-      </Box>
+      </Box> */}
       <Box className='flex'>
         <Navigator/>
         <OutletLayout>

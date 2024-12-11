@@ -43,7 +43,7 @@ const IdeasPage: React.FC<Props> = () => {
           <Typography variant='h1' className='text-primary-300'>Projects</Typography>
         </Box>
         <Box className='w-11/12 pb-5'>
-          <Box className='grid grid-cols-1 wide-screen:grid-cols-2 gap-12 pl-10 pr-10 wide-screen:pl-2 h-full overflow-y-auto'>
+          <Box className='grid grid-cols-1 wide-screen:grid-cols-2 pl-10 pr-10 wide-screen:pl-2 h-full overflow-y-auto'>
             {
               dataProjectModel?.map((data: IProject) => {
                 return (

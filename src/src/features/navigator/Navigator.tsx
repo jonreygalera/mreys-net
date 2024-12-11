@@ -56,10 +56,13 @@ const Navigator: React.FC = () => {
           key={navigationItem.key}
           className={
             tailwindUtil(
-              " rounded-e-3xl rounded-s-full",
-              // selectedNavigationItem.key === navigationItem.key && (
-              //   "bg-primary-50 "
-              // )
+              " rounded-e-3xl rounded-full",
+              selectedNavigationItem.key === navigationItem.key && (
+                "bg-primary-800 "
+              ),
+              selectedNavigationItem.key !== navigationItem.key && (
+                'hover:animate-bounce'
+              )
             )
           } 
         >

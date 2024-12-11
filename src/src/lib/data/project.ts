@@ -151,7 +151,7 @@ const project = [
   {
     "id": 7,
     "key": "nmsapps-finance-dashboard",
-    "title": "NMS Finance-Dashboard",
+    "title": "NMS Finance-Dashboard - script",
     "description": "Developed the script for downloading forex PDFs from the Bangko Sentral ng Pilipinas website. Maintained and enhanced the financial dashboard.",
     "version": "v1",
     "tags": ["forex", "financial dashboard"],
