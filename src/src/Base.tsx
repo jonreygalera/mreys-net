@@ -4,20 +4,54 @@ import Navigator from './features/navigator/Navigator';
 import OutletLayout from './components/layout/OutletLayout';
 import Typography from './components/typography/Typography';
 import ScrollIndicator from './components/scrollIndicator/ScrollIndicator';
+import { useState } from 'react';
+import INavigationItem from './interface/INavigationItem';
+import { tailwindUtil } from './utils/tailwindUtil';
 
 const Base = () => {
+  const [selectedNavItem, setSelectedNavItem] = useState<INavigationItem | null>(null);
   return (
     <Box
       className='flex flex-col'
     >
       <ScrollIndicator/>
-      {/* <Box
+      <Box
         className='bg-primary-950 text-yellow-400 top-0 z-50 px-5 sticky w-full'
       >
         # ONGOING
-      </Box> */}
+      </Box>
+     {
+      selectedNavItem && (
+        <Box
+          className='fixed top-0 left-0 z-50 h-full w-full flex flex-col bg-primary-950 transition-all animate-fade-in '
+          style={{ zIndex: 60 }}
+        >
+          <Box
+            className='relative w-full h-1/2 bg-primary-50 overflow-hidden'
+          >
+          <Typography 
+            className={tailwindUtil(
+              'absolute text-[500px] top-5 font-extrabold px-52 animate-letter-spacing-compress transition-all'
+              )}
+            >{selectedNavItem?.label ?? 'Home'}</Typography>
+            </Box>
+          <Box
+            className='relative w-full h-1/2 bg-primary-950 overflow-hidden'
+          >
+          <Typography 
+            className={tailwindUtil(
+              'absolute text-[500px] -top-[439px] font-extrabold px-52 animate-letter-spacing-compress transition-all text-primary-50'
+            )}
+          >{selectedNavItem?.label ?? 'Home'}</Typography>
+          </Box>
+        </Box>
+      )
+     }
       <Box className='flex'>
-        <Navigator/>
+        <Navigator 
+          onMouseEnter={(navItem) => setSelectedNavItem(navItem)}
+          onMouseLeave={() => setSelectedNavItem(null)}
+        />
         <OutletLayout>
           <Outlet/>
         </OutletLayout>

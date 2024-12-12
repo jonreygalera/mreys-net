@@ -9,7 +9,7 @@ const Navigation: React.FC<INavigationProps> = (props) => {
   
   return (
     <Box
-      className='fixed h-full pt-32 pr-5 -top-20 w-[15%] wide-screen:w-[10%] z-50'
+      className='fixed h-full pt-32 pr-5 -top-20 w-[15%] wide-screen:w-[10%] z-[999]'
     >
       <Box 
         className={
