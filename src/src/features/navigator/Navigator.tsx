@@ -11,6 +11,7 @@ import IconButton from '../../components/iconButton/IconButton';
 import INavigationItem from '../../interface/INavigationItem';
 import Box from '../../components/box/Box';
 import { tailwindUtil } from '../../utils/tailwindUtil';
+import Typography from '../../components/typography/Typography';
 
 const NAVIGATOR_ITEMS: INavigationItem[] = [
   { key: 'nav-item-home', label: 'Home', icon: HomeIcon, path: '/' },
@@ -20,7 +21,12 @@ const NAVIGATOR_ITEMS: INavigationItem[] = [
   { key: 'nav-item-profile', label: 'Profile', icon: EllipsisHorizontalCircleIcon, path: '/profile' },
 ];
 
-const Navigator: React.FC = () => {
+interface Props {
+  onMouseEnter?: (navigationItem: INavigationItem) => void;
+  onMouseLeave?: () => void;
+}
+
+const Navigator: React.FC<Props> = ({ onMouseEnter, onMouseLeave }) => {
   const navigate = useNavigate();
   const routeLocation = useLocation();
 
@@ -50,16 +56,20 @@ const Navigator: React.FC = () => {
       className="ml-4 top-36"
       activeItem={{...selectedNavigationItem, index: navigationItemIndex}}
     >
-      
       {NAVIGATOR_ITEMS.map((navigationItem, navigationItemIdx) => (
         <Box 
           key={navigationItem.key}
+          onMouseEnter={() => onMouseEnter?.(navigationItem as INavigationItem)}
+          onMouseLeave={() => onMouseLeave?.()}
           className={
             tailwindUtil(
-              " rounded-e-3xl rounded-s-full",
-              // selectedNavigationItem.key === navigationItem.key && (
-              //   "bg-primary-50 "
-              // )
+              " rounded-e-3xl rounded-full",
+              selectedNavigationItem.key === navigationItem.key && (
+                "bg-primary-800 "
+              ),
+              selectedNavigationItem.key !== navigationItem.key && (
+                'hover:animate-bounce'
+              )
             )
           } 
         >

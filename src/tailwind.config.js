@@ -47,6 +47,7 @@ export default {
         'infinite-scroll-h': 'infinite-scroll-horizontal 30s linear infinite',
         'fade-in': 'fade-in 0.3s ease-in-out',
         'around': 'around 5s linear infinite',
+        'letter-spacing-compress': 'letter-spacing-compress 0.5s linear',
       },
       keyframes: {
         'infinite-scroll-vertical': {
@@ -67,6 +68,10 @@ export default {
           '50%': { left: '98%', top: '95%' }, // Bottom-right
           '75%': { left: '0', top: '95%' }, // Bottom-left
           '100%': { left: '0', top: '0' }, // Back to Top-left
+        },
+        'letter-spacing-compress': {
+          from: { letterSpacing: '500px' },
+          to: { letterSpacing: '0em' },
         },
       }
     },

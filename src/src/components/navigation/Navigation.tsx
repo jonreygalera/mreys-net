@@ -9,7 +9,7 @@ const Navigation: React.FC<INavigationProps> = (props) => {
   
   return (
     <Box
-      className='fixed h-full pt-32 pr-5 -top-20 w-[15%] wide-screen:w-[10%] z-50'
+      className='fixed h-full pt-32 pr-5 -top-20 w-[15%] wide-screen:w-[10%] z-[999]'
     >
       <Box 
         className={
@@ -54,7 +54,7 @@ const Navigation: React.FC<INavigationProps> = (props) => {
               >
                 <Typography 
                   className={
-                    tailwindUtil('text-primary-700', activeItem?.index === childIdx && 'text-primary-400')
+                    tailwindUtil('text-primary-700 transition-all', activeItem?.index === childIdx && 'text-primary-400')
                   }
                 >
                   {label}

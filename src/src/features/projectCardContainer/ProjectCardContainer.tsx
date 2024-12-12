@@ -40,7 +40,7 @@ const ProjectCardContainer: React.FC<Props> = ({
       }}
     >
       {/* Content box */}
-      <Box className="h-full w-full bg-primary-50 hover:bg-primary-75 hover:border-primary-400 rounded-2xl shadow-primary-950 glassmorphic">
+      <Box className="h-full w-full bg-primary-50 rounded-2xl shadow-primary-950 transition-all">
         {/* Image group */}
         <PhotoCardGroup className="absolute -top-5 -left-10">
           {data.imageSets?.slice(0, 3).map((image: IImageSet, idx: number) => (
@@ -49,13 +49,13 @@ const ProjectCardContainer: React.FC<Props> = ({
         </PhotoCardGroup>
         {/* Main content */}
         <Box className="flex">
-          <Box className="ml-48 flex flex-col w-full gap-5">
+          <Box className="ml-48 flex flex-col w-full gap-5 ">
             {/* Title */}
             <Box>
               <Typography variant="h2">{data?.title || ''}</Typography>
             </Box>
             {/* Action buttons */}
-            <Box className="flex gap-1">
+            <Box className="flex gap-1 ">
               <ButtonGroup>
                 <Button
                   startComponent={<ArrowUpRightIcon className="size-3 mx-1 items-center" />}
