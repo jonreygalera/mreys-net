@@ -1,4 +1,4 @@
-[
+const techStack = [
   {
     "id": 1,
     "key": "codeigniter2.1.3",
@@ -158,5 +158,17 @@
     "icon": "https://picsum.photos/id/237/200/300",
     "url": "https://picsum.photos/id/237/200/300",
     "meta": null
+  },
+  {
+    "id": 9,
+    "key": "angular-1",
+    "label": "Angular",
+    "version": null,
+    "tags": [],
+    "icon": "https://picsum.photos/id/237/200/300",
+    "url": "https://picsum.photos/id/237/200/300",
+    "meta": null
   }
-]
+];
+
+export default techStack;

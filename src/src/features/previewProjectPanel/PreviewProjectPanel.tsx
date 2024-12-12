@@ -49,7 +49,7 @@ const PreviewProjectPanel: React.FC<Props> = (props) => {
             <Box className='flex w-full h-full relative flex-col gap-2'>
               <ButtonGroup>
               {
-                  ([...Array(10)]).map((_, idx) => (
+                  data?.joinData?.map((tech: any, idx) => (
                     <Button
                       key={`button-group-tech-stack-${idx}`}
                       onClick={() => console.log('test')}
@@ -58,7 +58,7 @@ const PreviewProjectPanel: React.FC<Props> = (props) => {
                         </svg>
                       }
                     >
-                      Laravel
+                      {tech?.label ?? ''}
                     </Button>
                   ))
                 }

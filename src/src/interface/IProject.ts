@@ -9,5 +9,6 @@ export default interface IProject {
   tags?: string[];
   roles?: string[];
   imageSets?: IImageSet[];
-  url?: string|null
+  url?: string|null;
+  joinData?: null | [];
 }
