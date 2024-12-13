@@ -38,12 +38,12 @@ const IdeasPage: React.FC<Props> = () => {
           })
         }
       </HighlightCarousel>
-      <Box className='flex mt-2 mb-10 border rounded-lg h-screen'>
-        <Box className='flex p-5 bg-primary-950 rounded-s-lg relative'>
+      <Box className='flex mt-4 mb-10 border-2 border-primary-950 rounded-2xl h-screen shadow-solid'>
+        <Box className='flex p-5 bg-primary-800 rounded-s-lg relative'>
           <Typography variant='h1' className='text-primary-300'>Projects</Typography>
         </Box>
         <Box className='w-11/12 pb-5'>
-          <Box className='grid grid-cols-1 wide-screen:grid-cols-2 pl-10 pr-10 wide-screen:pl-2 h-full overflow-y-auto'>
+          <Box className='grid grid-cols-1 wide-screen:grid-cols-2 pl-10 pr-10 pb-10 wide-screen:pl-2 h-full overflow-y-auto'>
             {
               dataProjectModel?.map((data: IProject) => {
                 return (
@@ -62,25 +62,27 @@ const IdeasPage: React.FC<Props> = () => {
         </Box>
       </Box>
 
-      <Box className='p-5  bg-primary-950'>
-        <Typography variant='h1' className='text-primary-300'>Experimental</Typography>
-      </Box>
-      <Box className='pb-5'>
-        <Box className='grid grid-cols-1 wide-screen:grid-cols-2 pb-10 gap-2 pl-28 wide-screen:pl-20 h-[800px] overflow-y-auto border rounded-s-lg'>
-          {
-            dataProjectExperimentalModel?.map((data: IProject) => {
-              return (
-                <ProjectCardContainer 
-                  key={`project-container-${data?.key}`}
-                  active={data?.key === selectedProject?.key}
-                  data={data}
-                  onClickView={() => {
-                    setSelectedProject(data)
-                  }}
-                />
-              )
-            })
-          }
+      <Box className='flex flex-col mt-4 mb-10 border-2 border-primary-950 rounded-2xl h-screen shadow-solid'>
+        <Box className='p-5  bg-primary-800 rounded-t-lg'>
+          <Typography variant='h1' className='text-primary-300'>Experimental</Typography>
+        </Box>
+        <Box className='pb-5'>
+          <Box className='grid grid-cols-1 wide-screen:grid-cols-2 pb-10 gap-2 pl-28 wide-screen:pl-20 h-[800px] overflow-y-auto border rounded-s-lg'>
+            {
+              dataProjectExperimentalModel?.map((data: IProject) => {
+                return (
+                  <ProjectCardContainer 
+                    key={`project-container-${data?.key}`}
+                    active={data?.key === selectedProject?.key}
+                    data={data}
+                    onClickView={() => {
+                      setSelectedProject(data)
+                    }}
+                  />
+                )
+              })
+            }
+          </Box>
         </Box>
       </Box>
       {/* Dialog */}

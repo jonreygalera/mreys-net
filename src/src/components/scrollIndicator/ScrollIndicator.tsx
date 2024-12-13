@@ -27,7 +27,7 @@ const ScrollIndicator: React.FC<Props> = (props) => {
       className="fixed top-0 left-0 w-full z-50 flex items-start justify-start"
     >
       <Box
-        className="h-1 w-full bg-primary-950 z-50 flex items-end justify-end"
+        className="h-1 w-full bg-primary-800 z-50 flex items-end justify-end"
         style={{
           width: `${scrollWidth}%`
         }}

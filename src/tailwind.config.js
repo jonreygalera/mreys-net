@@ -29,17 +29,18 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#F9FAFB',
-          60: '#f4f4f4',
-          75: '#EFF0F1',
+          50: '#F2F2F2', // Lightest
+          100: '#E8E8EA', // Slightly darker
+          200: '#E2E2E6',
           300: '#D4D4D8',
-          400: '#A1A1AA',
-          500: '#71717A',
+          400: '#8A8A9C', // Vibrant mid-range
+          500: '#6F6F78', // Slightly more vivid
+          600: '#52525B',
           700: '#3F3F46',
-          800: '#27272A',
+          800: '#26262A', // More contrast with 700
           900: '#18181B',
-          950: '#09090B',
-        }
+          950: '#0F0F12',
+        },
       },
       animation: {
         'spin-slow': 'spin 3s linear infinite',
@@ -73,6 +74,9 @@ export default {
           from: { letterSpacing: '500px' },
           to: { letterSpacing: '0em' },
         },
+      },
+      boxShadow: {
+        'solid' : '0px 5px 0px 0px rgba(0, 0, 0, 0.6)'
       }
     },
   },

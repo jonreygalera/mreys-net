@@ -33,11 +33,8 @@ const ProjectCardContainer: React.FC<Props> = ({
   return (
     <Box
       className={tailwindUtil(
-        'border-2 flex flex-col max-w-xl mt-10 ml-10 h-[170px] relative rounded-3xl py-2 px-2 transition duration-500 gap-5 hover:-translate-y-2',
+        'border-2 flex flex-col max-w-xl mt-10 ml-10 h-[170px] relative rounded-3xl border-primary-950 py-2 px-2 transition duration-500 gap-5 hover:-translate-y-2 shadow-solid',
       )}
-      style={{
-        backgroundImage: active ? `url(${backgroundImage})` : '',
-      }}
     >
       {/* Content box */}
       <Box className="h-full w-full bg-primary-50 rounded-2xl shadow-primary-950 transition-all">

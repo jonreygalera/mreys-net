@@ -7,7 +7,7 @@ const PageLoader = () => {
       className='bg-red-500 h-screen w-screen flex transition-all'
     >
       <Box
-        className='w-1/2 h-screen bg-primary-950 flex justify-end items-center'
+        className='w-1/2 h-screen bg-primary-800 flex justify-end items-center'
       >
         <Typography variant='title' className='text-primary-50 animate-bounce'>LOAD</Typography>
       </Box>

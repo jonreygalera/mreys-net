@@ -63,9 +63,9 @@ const Navigator: React.FC<Props> = ({ onMouseEnter, onMouseLeave }) => {
           onMouseLeave={() => onMouseLeave?.()}
           className={
             tailwindUtil(
-              " rounded-e-3xl rounded-full",
+              "rounded-full",
               selectedNavigationItem.key === navigationItem.key && (
-                "bg-primary-800 "
+                "bg-primary-800"
               ),
               selectedNavigationItem.key !== navigationItem.key && (
                 'hover:animate-bounce'

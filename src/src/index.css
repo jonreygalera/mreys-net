@@ -6,9 +6,9 @@ html {
 }
 
 body {
-  background-color: #f4f4f4;
+  background-color: #E1E1E1;
   background-image: url('./assets/iconSvg/bg-hexagon.svg');
-  background-blend-mode: lighten;
+  background-blend-mode: soft-light;
 }
 
 .nav-item:after {

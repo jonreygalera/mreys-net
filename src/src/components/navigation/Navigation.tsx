@@ -14,12 +14,12 @@ const Navigation: React.FC<INavigationProps> = (props) => {
       <Box 
         className={
           tailwindUtil(
-            "bg-primary-950 border-primary-500 border-y-2 border-solid rounded-3xl z-50 h-[60%]",
+            "bg-primary-800 border-primary-950 border-2 border-solid rounded-3xl z-50 h-[60%] shadow-solid",
             className
           )
         }>
         <Box
-          className='flex flex-col gap-9 py-6 ml-2.5 my-5 bg-primary-900 rounded-2xl w-[35%] wide-screen:w-[50%] items-center'
+          className='flex flex-col gap-9 py-6 ml-2.5 my-5 bg-primary-900 rounded-2xl w-[35%] wide-screen:w-[50%] items-center shd'
         >
           { children }
         </Box>
@@ -54,7 +54,11 @@ const Navigation: React.FC<INavigationProps> = (props) => {
               >
                 <Typography 
                   className={
-                    tailwindUtil('text-primary-700 transition-all', activeItem?.index === childIdx && 'text-primary-400')
+                    tailwindUtil(
+                      'text-primary-700 transition-all relative', 
+                      activeItem?.index === childIdx && 'text-primary-400',
+                      activeItem?.index === childIdx && 'after:animate-ping after:absolute after:top-3 after:-right-3 after:rounded-full after:inline-block after:w-1 after:h-1 after:bg-green-700 after:shadow-3xl after:shadow-green-500'
+                    )
                   }
                 >
                   {label}

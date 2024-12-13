@@ -38,18 +38,18 @@ const HighlightCarousel: React.FC<Props> = ({ children, title, timeInterval = 10
 
   return (
     <Box
-      className='relative min-h-full h-[600px] shadow-md rounded-3xl shadow-primary-400'
+      className='relative min-h-full h-[600px] bg-primary-50 border-2 border-primary-900 rounded-3xl shadow-solid'
       onMouseEnter={() => setStartInterval(false)}
       onMouseLeave={() => setStartInterval(true)}
     >
 
-      <Box className='absolute w-full rounded-3xl border-primary-950 border-t-2 z-50'>
+      {/* <Box className='absolute w-full border-primary-950 border-t-2 z-50'>
         <Box className='flex justify-center w-full'>
-          <Box className='flex justify-center items-center bg-primary-950 w-48 h-14 rounded-b-3xl'>
+          <Box className='flex justify-center items-center bg-primary-800 w-48 h-14 rounded-b-3xl'>
             <Typography className='text-primary-50 underline'>{title}</Typography>
           </Box>
         </Box>
-      </Box>
+      </Box> */}
 
       <Box
         className='relative flex overflow-hidden min-h-full min-w-full'
@@ -72,7 +72,7 @@ const HighlightCarousel: React.FC<Props> = ({ children, title, timeInterval = 10
       </Box>
       {/* Indicators */}
       <Box
-        className='absolute flex top-[568px] justify-center mt-4 ml-4'
+        className='absolute flex top-[568px] justify-center items-center mt-4 ml-4'
       >
         {
           items.map((_, idx) => {
@@ -80,8 +80,8 @@ const HighlightCarousel: React.FC<Props> = ({ children, title, timeInterval = 10
               <button
                 onClick={() => setCurrentIndex(idx)}
                 className={tailwindUtil(
-                  'rounded-full mx-1 w-3 h-3',
-                  idx === currentIndex ? 'bg-primary-300' : 'bg-primary-400'
+                  'rounded-full mx-1',
+                  idx === currentIndex ? 'bg-primary-500 w-3 h-3' : 'bg-primary-400 w-2 h-2'
                 )}
               >
               </button>
@@ -91,13 +91,13 @@ const HighlightCarousel: React.FC<Props> = ({ children, title, timeInterval = 10
       </Box>
       <Button 
         onClick={prevSlide}
-        className='absolute flex items-center bg-primary-900 text-primary-50 rounded-e-3xl h-[100px] top-64 hover:bg-primary-950'
+        className='absolute flex items-center bg-primary-900 text-primary-50 rounded-e-3xl h-[100px] top-64 hover:bg-primary-800'
       >
         <ChevronLeftIcon className='size-3'/>
       </Button>
       <Button 
         onClick={nextSlide}
-        className='absolute flex items-center bg-primary-900 text-primary-50 rounded-s-3xl h-[100px] top-64 right-0 hover:bg-primary-950'
+        className='absolute flex items-center bg-primary-900 text-primary-50 rounded-s-3xl h-[100px] top-64 right-0 hover:bg-primary-800'
       >
         <ChevronRightIcon className='size-3'/>
       </Button>

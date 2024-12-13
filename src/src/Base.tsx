@@ -15,15 +15,10 @@ const Base = () => {
       className='flex flex-col'
     >
       <ScrollIndicator/>
-      <Box
-        className='bg-primary-950 text-yellow-400 top-0 z-50 px-5 sticky w-full'
-      >
-        # ONGOING
-      </Box>
      {
       selectedNavItem && (
         <Box
-          className='fixed top-0 left-0 z-50 h-full w-full flex flex-col bg-primary-950 transition-all animate-fade-in '
+          className='fixed top-0 left-0 z-50 h-full w-full flex flex-col bg-primary-800 transition-all animate-fade-in '
           style={{ zIndex: 60 }}
         >
           <Box
@@ -31,12 +26,12 @@ const Base = () => {
           >
           <Typography 
             className={tailwindUtil(
-              'absolute text-[500px] top-5 font-extrabold px-52 animate-letter-spacing-compress transition-all'
+              'absolute text-[500px] top-5 font-extrabold px-52 animate-letter-spacing-compress transition-all text-primary-800'
               )}
             >{selectedNavItem?.label ?? 'Home'}</Typography>
             </Box>
           <Box
-            className='relative w-full h-1/2 bg-primary-950 overflow-hidden'
+            className='relative w-full h-1/2 bg-primary-800 overflow-hidden'
           >
           <Typography 
             className={tailwindUtil(

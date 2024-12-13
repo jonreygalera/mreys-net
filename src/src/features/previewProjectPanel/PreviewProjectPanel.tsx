@@ -6,6 +6,7 @@ import Slide from '../../components/slide/Slide';
 import CarouselImageSelection from '../carouselImageSelection/CarouselImageSelection';
 import IProject from '../../interface/IProject';
 import ButtonGroup from '../../components/button/ButtonGroup';
+import PileBox from '../../components/box/PileBox';
 
 interface Props {
   data?: IProject | null;
@@ -78,9 +79,27 @@ const PreviewProjectPanel: React.FC<Props> = (props) => {
         </Box>
 
         <Box className='mt-4'>
-          <CarouselImageSelection
-            imageSets={data?.imageSets ?? []}
-          />
+          <PileBox>
+            <img 
+              src={data?.imageSets ? (data.imageSets[0])?.source ?? '' : ''}
+              className='
+                w-full
+                h-full
+                shadow-2xl 
+                shadow-primary-700
+                rounded-3xl 
+                rotate-3
+                scale-90
+                hover:rotate-0
+                hover:scale-100
+                transition
+                duration-700
+                cursor-pointer
+                transform-gpu
+                delay-700
+              '
+            />
+          </PileBox>
         </Box>
       </Box>
     </Box>
