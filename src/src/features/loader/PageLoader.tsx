@@ -14,7 +14,7 @@ const PageLoader = () => {
       <Box
         className='w-1/2 h-screen bg-primary-50 flex justify-start items-center'
       >
-        <Typography variant='title' className='text-primary-950 animate-bounce'>iNG</Typography>
+        <Typography variant='title' className='text-primary-800 animate-bounce'>iNG</Typography>
       </Box>
     </Box>
   );

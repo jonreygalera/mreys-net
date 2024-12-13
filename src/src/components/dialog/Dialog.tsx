@@ -18,14 +18,14 @@ const Dialog: React.FC<DialogProps> = (props) => {
 
   return (
     <Box className="fixed inset-0 z-50 flex items-center justify-center bg-primary-800 bg-opacity-50">
-      <Box className="bg-primary-100 rounded-lg shadow-lg w-full max-w-7xl animate-fade-in">
+      <Box className="bg-primary-100 rounded-3xl w-full max-w-7xl animate-fade-in border-2 border-primary-950 shadow-solid">
         {/* Header */}
         {title && (
-          <Box className="flex items-center justify-between mb-4">
+          <Box className="flex items-center justify-between mb-4 border-b-4 border-primary-950">
             <h2 className="text-lg font-semibold text-primary-900 mr-2">{title}</h2>
             <button
               onClick={onClose}
-              className="text-primary-400 hover:text-primary-700 focus:outline-none bg-primary-800 rounded-se-md rounded-es-md p-1"
+              className="text-primary-400 hover:text-primary-700 focus:outline-none bg-primary-800 rounded-se-2xl p-1"
               aria-label="Close dialog"
             >
               <XMarkIcon className='size-7'/>

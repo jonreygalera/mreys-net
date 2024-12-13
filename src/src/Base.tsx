@@ -7,14 +7,17 @@ import ScrollIndicator from './components/scrollIndicator/ScrollIndicator';
 import { useState } from 'react';
 import INavigationItem from './interface/INavigationItem';
 import { tailwindUtil } from './utils/tailwindUtil';
+import BubbleChat from './features/bubbleChat/BubbleChat';
 
 const Base = () => {
   const [selectedNavItem, setSelectedNavItem] = useState<INavigationItem | null>(null);
+  const [scrollYValue, setScrollYValue ] = useState<number>(0);
+
   return (
     <Box
       className='flex flex-col'
     >
-      <ScrollIndicator/>
+      <ScrollIndicator onScrollY={(value) => setScrollYValue(value)}/>
      {
       selectedNavItem && (
         <Box
@@ -54,11 +57,18 @@ const Base = () => {
       <Box
         className='relative border border-transparent mt-42 h-[400px]'
       >
+        <Box className={
+          tailwindUtil('absolute top-36 rotate-12 left-[650px] wide-screen:left-[900px] translate-all delay-200', scrollYValue >= 100 ? 'opacity-100' : ' opacity-0')
+        }>
+          <BubbleChat/>
+        </Box>
         <Box
-          className='bg-primary-900 h-[400px] mt-32 flex justify-center items-center'
+          className='bg-primary-800 h-[400px] mt-32 flex justify-center items-center border-t-8 border-primary-950'
         >
           <Box className='flex flex-col items-center justify-center'>
-            <img src="https://avatars.githubusercontent.com/u/55083108?v=4" className='w-[100px] h-[100px] rounded-full'/>
+            <Box className='rounded-full border-8 border-primary-950 overflow-hidden '>
+              <img src="https://avatars.githubusercontent.com/u/55083108?v=4" className='w-[100px] h-[100px] hover:animate-spin'/>
+            </Box>
             <Typography variant='h4' className='text-primary-400'>
               @ { (new Date()).getFullYear()} Jon Rey Galera
             </Typography>

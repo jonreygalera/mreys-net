@@ -5,7 +5,6 @@ import PhotoCard from '../../components/photoCard/PhotoCard';
 import Typography from '../../components/typography/Typography';
 import Button from '../../components/button/Button';
 import ButtonGroup from '../../components/button/ButtonGroup';
-import backgroundImage from '../../assets/iconSvg/bg-hexagon.svg';
 import { tailwindUtil } from '../../utils/tailwindUtil';
 import IImageSet from '../../interface/IImageSet';
 import {
@@ -13,22 +12,18 @@ import {
   BookOpenIcon as BookOpenIconOutline,
   ArrowUpRightIcon,
 } from '@heroicons/react/24/outline';
+import {
+  StarIcon as StarIconSolid,
+} from '@heroicons/react/24/solid';
 
-interface Props {
-  data?: Record<string, any>;
-  active?: boolean;
-  onClickView?: () => void;
-}
+import IProjectCardContainerProps from '../../interface/IProjectCardContainerProps';
 
-const ProjectCardContainer: React.FC<Props> = ({
+const ProjectCardContainer: React.FC<IProjectCardContainerProps> = ({
   data = {},
-  active = false,
-  onClickView,
+  isBookmark = false,
+  onClickAction,
 }) => {
 
-  const handleOnVisitUrl = () => {
-
-  }
 
   return (
     <Box
@@ -56,19 +51,19 @@ const ProjectCardContainer: React.FC<Props> = ({
               <ButtonGroup>
                 <Button
                   startComponent={<ArrowUpRightIcon className="size-3 mx-1 items-center" />}
-                  onClick={handleOnVisitUrl}
+                  onClick={() => onClickAction?.('visit', data)}
                 >
                   Visit
                 </Button>
                 <Button
-                  startComponent={<StarIconOutline className="size-3 mx-1 items-center" />}
-                  onClick={() => console.log('Bookmark')}
+                  startComponent={isBookmark ? <StarIconSolid className="size-3 mx-1 items-center text-yellow-400" /> : <StarIconOutline className="size-3 mx-1 items-center" />}
+                  onClick={() => onClickAction?.('bookmark', data)}
                 >
                   Bookmark
                 </Button>
                 <Button
                   startComponent={<BookOpenIconOutline className="size-3 mx-1 items-center" />}
-                  onClick={onClickView}
+                  onClick={() => onClickAction?.('open', data)}
                 >
                   Open
                 </Button>

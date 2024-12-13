@@ -58,7 +58,7 @@ const Slide: React.FC<Props> = (props) => {
 
   return (
     <Box className={tailwindUtil(
-      "relative w-72 h-14 bg-primary-800 rounded-full shadow-lg overflow-hidden",
+      "relative w-72 h-14 bg-primary-800 rounded-full overflow-hidden border-2 border-primary-950 shadow-solid",
       className
     )}>
       {isUnlocked ? (
@@ -71,7 +71,7 @@ const Slide: React.FC<Props> = (props) => {
             {label} →
           </Box>
           <Box
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-gradient-to-r from-primary-500 to-primary-700 rounded-full shadow-md flex items-center justify-center cursor-pointer transition-transform duration-300"
+            className="absolute border-2 border-primary-950 left-0 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-primary-700 rounded-full flex items-center justify-center cursor-pointer transition-transform duration-300"
             style={{ transform: `translateX(${position}px) translateY(-50%)` }}
             onMouseDown={handleMouseDown}
           >

@@ -76,7 +76,7 @@ export default {
         },
       },
       boxShadow: {
-        'solid' : '0px 5px 0px 0px rgba(0, 0, 0, 0.6)'
+        'solid' : '0px 5px 0px 0px #3F3F46'
       }
     },
   },

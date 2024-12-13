@@ -2,7 +2,6 @@ import React, { Children, PropsWithChildren, useEffect, useState } from 'react';
 import Box from '../box/Box';
 import Button from '../button/Button';
 import { tailwindUtil } from '../../utils/tailwindUtil';
-import Typography from '../typography/Typography';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
 interface Props extends PropsWithChildren {
@@ -93,13 +92,13 @@ const HighlightCarousel: React.FC<Props> = ({ children, title, timeInterval = 10
         onClick={prevSlide}
         className='absolute flex items-center bg-primary-900 text-primary-50 rounded-e-3xl h-[100px] top-64 hover:bg-primary-800'
       >
-        <ChevronLeftIcon className='size-3'/>
+        <ChevronLeftIcon className='size-7'/>
       </Button>
       <Button 
         onClick={nextSlide}
         className='absolute flex items-center bg-primary-900 text-primary-50 rounded-s-3xl h-[100px] top-64 right-0 hover:bg-primary-800'
       >
-        <ChevronRightIcon className='size-3'/>
+        <ChevronRightIcon className='size-7'/>
       </Button>
     </Box>
   );

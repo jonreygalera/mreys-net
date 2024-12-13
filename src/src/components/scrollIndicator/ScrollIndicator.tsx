@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Box from '../box/Box';
 
 interface Props {
-
+  onScrollY?: (value: number) => void
 }
 
-const ScrollIndicator: React.FC<Props> = (props) => {
+const ScrollIndicator: React.FC<Props> = ({onScrollY}) => {
   const [scrollWidth, setScrollWidth] = useState<number>(0);
 
   const handleScroll = () => {
@@ -13,6 +13,7 @@ const ScrollIndicator: React.FC<Props> = (props) => {
     const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
     const width = (scrollTop / documentHeight) * 100;
     setScrollWidth(width);
+    onScrollY?.(width)
   };
 
   useEffect(() => {

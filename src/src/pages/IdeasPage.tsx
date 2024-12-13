@@ -8,17 +8,40 @@ import PreviewProjectPanel from '../features/previewProjectPanel/PreviewProjectP
 import HighlightCarousel from '../components/carousel/HighlightCarousel';
 import Dialog from '../components/dialog/Dialog';
 import { useProjectExperimentalModelHook } from '../hooks/useProjectExperimentalModelHook';
+import { actionType } from '../types/TAction';
+import { openUrl } from '../utils/urlUtil';
+import useLocalStorage from '../hooks/useLocalStorage';
 
-interface Props {
-
+interface ISelectedProject {
+  action: actionType,
+  data: IProject | null
 }
 
-const IdeasPage: React.FC<Props> = () => {
+const IdeasPage: React.FC = () => {
 
   const { data: dataProjectModel } = useProjectModelHook({ key: 'all', value: 'all'})
   const { data: dataProjectExperimentalModel } = useProjectExperimentalModelHook({ key: 'all', value: 'all'})
 
-  const [ selectedProject, setSelectedProject ] = useState<IProject | null>(null);
+  const [ selectedProject, setSelectedProject ] = useState<ISelectedProject | null>(null);
+  const [ bookmarkProject , setBookmarkProject ] = useLocalStorage<string[]>('bookmark-project', []);
+
+  const handleOnProjectAction = (actionType: actionType, dataValue: IProject | null) => {
+    if(dataValue?.url && actionType != 'bookmark') {
+      openUrl(dataValue.url);
+      setSelectedProject(null);
+    } else {
+      if(actionType == 'bookmark') {
+        const cloneBookmarkProject = bookmarkProject;
+        if(cloneBookmarkProject.includes(dataValue?.key as string)) {
+          setBookmarkProject(cloneBookmarkProject.filter(data => data != dataValue?.key as string));
+        } else {
+          setBookmarkProject([...cloneBookmarkProject, dataValue?.key as string]);
+        }
+      } else {
+        setSelectedProject({ action: actionType, data: dataValue});
+      }
+    }
+  }
 
   return (
     <Box className='relative mt-5'>
@@ -32,6 +55,9 @@ const IdeasPage: React.FC<Props> = () => {
                <PreviewProjectPanel 
                 title='Ideas'
                 data={data}
+                onSlide={(value) => {
+                  handleOnProjectAction('visit', value ?? null)
+                }}
               />
              </Box>
             )
@@ -39,7 +65,7 @@ const IdeasPage: React.FC<Props> = () => {
         }
       </HighlightCarousel>
       <Box className='flex mt-4 mb-10 border-2 border-primary-950 rounded-2xl h-screen shadow-solid'>
-        <Box className='flex p-5 bg-primary-800 rounded-s-lg relative'>
+        <Box className='flex p-5 bg-primary-800 rounded-s-lg relative border-r-4 border-primary-950'>
           <Typography variant='h1' className='text-primary-300'>Projects</Typography>
         </Box>
         <Box className='w-11/12 pb-5'>
@@ -49,11 +75,9 @@ const IdeasPage: React.FC<Props> = () => {
                 return (
                   <ProjectCardContainer 
                     key={`project-container-${data?.key}`}
-                    active={data?.key === selectedProject?.key}
                     data={data}
-                    onClickView={() => {
-                      setSelectedProject(data)
-                    }}
+                    onClickAction={handleOnProjectAction}
+                    isBookmark={bookmarkProject.includes(data?.key)}
                   />
                 )
               })
@@ -63,7 +87,7 @@ const IdeasPage: React.FC<Props> = () => {
       </Box>
 
       <Box className='flex flex-col mt-4 mb-10 border-2 border-primary-950 rounded-2xl h-screen shadow-solid'>
-        <Box className='p-5  bg-primary-800 rounded-t-lg'>
+        <Box className='p-5  bg-primary-800 rounded-t-lg border-b-4 border-primary-950'>
           <Typography variant='h1' className='text-primary-300'>Experimental</Typography>
         </Box>
         <Box className='pb-5'>
@@ -73,11 +97,9 @@ const IdeasPage: React.FC<Props> = () => {
                 return (
                   <ProjectCardContainer 
                     key={`project-container-${data?.key}`}
-                    active={data?.key === selectedProject?.key}
                     data={data}
-                    onClickView={() => {
-                      setSelectedProject(data)
-                    }}
+                    onClickAction={handleOnProjectAction}
+                    isBookmark={bookmarkProject.includes(data?.key)}
                   />
                 )
               })
@@ -87,14 +109,31 @@ const IdeasPage: React.FC<Props> = () => {
       </Box>
       {/* Dialog */}
       <Dialog 
-        isOpen={Boolean(selectedProject)} 
+        isOpen={Boolean(selectedProject) && ['open', 'visit'].includes(selectedProject?.action as string)} 
         title={' '}
         onClose={() => setSelectedProject(null)}
       >
         <Box>
-          <PreviewProjectPanel 
-            data={selectedProject}
-          />
+         {
+          selectedProject?.action == 'open' && (
+            <PreviewProjectPanel 
+              data={selectedProject?.data}
+            />
+          )
+         }
+
+         {
+          selectedProject?.action == 'visit' && (
+            <Box>
+              {
+                (!selectedProject.data?.url && selectedProject?.data?.fallbackUrl) && <Typography>Sorry, we cannot visit the website!</Typography>
+              }
+              {
+                selectedProject?.data?.fallbackUrl && (<Typography>Maybe you can visit their website <a href={selectedProject.data.fallbackUrl ?? ''} target='_blank' className='text-blue-500'>{selectedProject.data.title ?? ''}</a></Typography>)
+              }
+            </Box>
+          )
+         }
         </Box>
       </Dialog>
     </Box>

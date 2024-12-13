@@ -12,7 +12,7 @@ const techStack = [
   {
     "id": 2,
     "key": "jquery",
-    "label": "Jquery",
+    "label": "JQuery",
     "version": null,
     "tags": [],
     "icon": "https://picsum.photos/id/237/200/300",

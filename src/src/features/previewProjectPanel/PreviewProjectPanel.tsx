@@ -3,19 +3,15 @@ import Box from '../../components/box/Box';
 import Typography from '../../components/typography/Typography';
 import Button from '../../components/button/Button';
 import Slide from '../../components/slide/Slide';
-import CarouselImageSelection from '../carouselImageSelection/CarouselImageSelection';
-import IProject from '../../interface/IProject';
 import ButtonGroup from '../../components/button/ButtonGroup';
 import PileBox from '../../components/box/PileBox';
+import IPreviewProjectPanelProps from '../../interface/IPreviewProjectPanelProps';
 
-interface Props {
-  data?: IProject | null;
-  title?: string;
-}
 
-const PreviewProjectPanel: React.FC<Props> = (props) => {
+const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
   const {
     data,
+    onSlide,
   } = props;
 
   return (
@@ -29,7 +25,7 @@ const PreviewProjectPanel: React.FC<Props> = (props) => {
       '
     >
       <Box className='grid grid-cols-2 h-full w-full'>
-        <Box className='flex flex-col p-10 pt-20 gap-5'>
+        <Box className='flex flex-col p-20 pt-20 gap-5'>
           
           <Box className='flex w-full flex-col gap-5 min-h-[270px] max-h-[270px] ml-2'>
             <Box className='relative pt-5'>
@@ -41,6 +37,10 @@ const PreviewProjectPanel: React.FC<Props> = (props) => {
               <Typography variant='body1' className='text-ellipsis'>
                 { data?.description ?? ''}
               </Typography>
+            </Box>
+
+            <Box>
+              Roles
             </Box>
           </Box>
             
@@ -71,7 +71,7 @@ const PreviewProjectPanel: React.FC<Props> = (props) => {
                 className='w-[250px]'
                 label={'Slide to Visit'}
                 labelSlided={'Visited!'}
-                onSlided={() => alert('Jon Rey Galera | Ongoing')}
+                onSlided={() => onSlide?.(data)}
               />
             </Box>
           </Box>  
@@ -84,7 +84,7 @@ const PreviewProjectPanel: React.FC<Props> = (props) => {
               src={data?.imageSets ? (data.imageSets[0])?.source ?? '' : ''}
               className='
                 w-full
-                h-full
+                min-h-[500px]
                 shadow-2xl 
                 shadow-primary-700
                 rounded-3xl 

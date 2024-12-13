@@ -10,5 +10,6 @@ export default interface IProject {
   roles?: string[];
   imageSets?: IImageSet[];
   url?: string|null;
+  fallbackUrl?: string|null;
   joinData?: null | [];
 }

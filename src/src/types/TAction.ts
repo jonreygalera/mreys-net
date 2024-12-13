@@ -1,0 +1,1 @@
+export type actionType = 'visit' | 'bookmark' | 'open';

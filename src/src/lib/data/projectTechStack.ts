@@ -17,15 +17,7 @@ const projectTechStack = [
   },
   {
     "projectId": 1,
-    "techStackId": 5
-  },
-  {
-    "projectId": 1,
     "techStackId": 6
-  },
-  {
-    "projectId": 1,
-    "techStackId": 11
   }
 ];
 

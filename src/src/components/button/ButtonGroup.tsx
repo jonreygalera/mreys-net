@@ -5,7 +5,7 @@ import { tailwindUtil } from '../../utils/tailwindUtil';
 import Typography from '../typography/Typography';
 
 const ButtonGroup: React.FC<IButtonGroupProps> = (props) => {
-  const { children, max = 3, label } = props;
+  const { children, max = 6, label } = props;
   const childrenArray = Children.toArray(children);
   const childrenContainer = max == 0 ? childrenArray : [...childrenArray].splice(0, max);
   const childLength = childrenContainer.length;
@@ -14,15 +14,15 @@ const ButtonGroup: React.FC<IButtonGroupProps> = (props) => {
   return (
     <Box className="inline-flex items-center gap-1" role="group">
       { label && <Typography>{label}</Typography>}
-      <Box className="inline-flex" role="group">
+      <Box className="inline-flex rounded-lg shadow-solid" role="group">
         { 
           childrenContainer.map((child: any, childIdx) => {
-            let cornerClass = 'border-x-0';
+            let cornerClass = '';
 
             if(childIdx == 0 && childLength > 1) {
               cornerClass = 'rounded-s-lg';
             } else if(childIdx != 0 && childIdx == childLastIndex) {
-              cornerClass = 'rounded-e-lg';
+              cornerClass = 'rounded-e-lg border';
             } else if (childLength == 1) {
               cornerClass = 'rounded-lg';
             }
@@ -30,7 +30,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = (props) => {
             return (<Box>
               {
                 React.cloneElement(child, {
-                  className: tailwindUtil(cornerClass, 'border bg-primary-50')
+                  className: tailwindUtil(cornerClass, 'border-2 border-primary-950 bg-primary-100 hover:bg-primary-300 hover:font-bold')
                 })
               }
             </Box>)
