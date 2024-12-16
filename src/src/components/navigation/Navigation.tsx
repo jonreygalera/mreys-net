@@ -14,12 +14,12 @@ const Navigation: React.FC<INavigationProps> = (props) => {
       <Box 
         className={
           tailwindUtil(
-            "bg-primary-800 border-primary-950 border-t-2 laptop:border-2 laptop:border-solid laptop:rounded-3xl z-50 laptop:h-[63%] laptop:shadow-solid p-5 laptop:p-0",
+            "bg-primary-800 border-primary-950 border-t-2 laptop:border-2 laptop:border-solid laptop:rounded-3xl z-50 laptop:h-[63%] laptop:shadow-solid py-2 laptop:p-0",
             className
           )
         }>
         <Box
-          className='flex laptop:flex-col justify-evenly w-full laptop: laptop:items-center laptop:gap-9 laptop:py-6 laptop:ml-2.5 laptop:my-5 bg-transparent laptop:bg-primary-900 rounded-2xl laptop:w-[35%] wide-screen:w-[50%] laptop:border-2 border-primary-700'
+          className='flex laptop:flex-col justify-around w-full laptop: laptop:items-center laptop:gap-9 laptop:py-6 laptop:ml-2.5 laptop:my-5 bg-transparent laptop:bg-primary-900 rounded-2xl laptop:w-[35%] wide-screen:w-[50%] laptop:border-2 border-primary-700'
         >
           { children }
         </Box>

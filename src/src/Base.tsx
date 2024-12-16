@@ -4,7 +4,7 @@ import Navigator from './features/navigator/Navigator';
 import OutletLayout from './components/layout/OutletLayout';
 import Typography from './components/typography/Typography';
 import ScrollIndicator from './components/scrollIndicator/ScrollIndicator';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import INavigationItem from './interface/INavigationItem';
 import { tailwindUtil } from './utils/tailwindUtil';
 import BubbleChat from './features/bubbleChat/BubbleChat';
@@ -13,24 +13,12 @@ const Base = () => {
   const [selectedNavItem, setSelectedNavItem] = useState<INavigationItem | null>(null);
   const [scrollYValue, setScrollYValue ] = useState<number>(0);
 
-  const [isScrolling, setIsScrolling] = useState(false);
-
-  useEffect(() => {
-    setIsScrolling(true);
-
-    const timeout = setTimeout(() => {
-      setIsScrolling(false);
-      clearTimeout(timeout);
-    }, 1000);
-
-  }, [scrollYValue]);
-
   return (
     <Box
       className='flex flex-col'
     >
       <Box className={
-          tailwindUtil('laptop:hidden flex border-2 justify-center border-primary-950 sticky inset-0 z-50 p-2 animate-fade-in shadow-solid bg-primary-100 rounded-b-md', isScrolling ? 'hidden' : 'flex')
+          tailwindUtil('laptop:hidden flex border-2 justify-center border-primary-950 sticky inset-0 z-50 p-2 animate-fade-in shadow-solid bg-primary-100 rounded-b-md')
         }
       >
         <Typography variant='h1' className='tracking-[0.9em]'>MReY</Typography>
