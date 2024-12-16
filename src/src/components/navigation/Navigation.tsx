@@ -9,23 +9,24 @@ const Navigation: React.FC<INavigationProps> = (props) => {
   
   return (
     <Box
-      className='fixed h-full pt-32 pr-5 -top-20 w-[15%] wide-screen:w-[10%] z-[999]'
+      className='fixed w-screen laptop:pt-32 bottom-0 laptop:pr-5 laptop:-top-20 laptop:h-full laptop:w-[15%] wide-screen:w-[10%] z-[999] bg-primary-800 laptop:bg-transparent'
     >
       <Box 
         className={
           tailwindUtil(
-            "bg-primary-800 border-primary-950 border-2 border-solid rounded-3xl z-50 h-[63%] shadow-solid",
+            "bg-primary-800 border-primary-950 border-t-2 laptop:border-2 laptop:border-solid laptop:rounded-3xl z-50 laptop:h-[63%] laptop:shadow-solid p-5 laptop:p-0",
             className
           )
         }>
         <Box
-          className='flex flex-col gap-9 py-6 ml-2.5 my-5 bg-primary-900 rounded-2xl w-[35%] wide-screen:w-[50%] items-center border-2 border-primary-700'
+          className='flex laptop:flex-col justify-evenly w-full laptop: laptop:items-center laptop:gap-9 laptop:py-6 laptop:ml-2.5 laptop:my-5 bg-transparent laptop:bg-primary-900 rounded-2xl laptop:w-[35%] wide-screen:w-[50%] laptop:border-2 border-primary-700'
         >
           { children }
         </Box>
       </Box>
       <Box 
         className='
+          hidden
           fixed
           top-10 
           left-20 
@@ -33,7 +34,7 @@ const Navigation: React.FC<INavigationProps> = (props) => {
           mt-12 
           rounded-e-full
           pl-8
-          flex
+          laptop:flex
           flex-col
           gap-8
           pt-2

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Box from '../box/Box';
 
 interface Props {
-  onScrollY?: (value: number) => void
+  onScrollY?: (value: number) => void;
 }
 
 const ScrollIndicator: React.FC<Props> = ({onScrollY}) => {

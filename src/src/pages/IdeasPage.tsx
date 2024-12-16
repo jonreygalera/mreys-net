@@ -56,8 +56,8 @@ const IdeasPage: React.FC = () => {
                <PreviewProjectPanel 
                 title='Ideas'
                 data={data}
-                onSlide={(value) => {
-                  handleOnProjectAction('visit', value ?? null)
+                onAction={(action, value) => {
+                  handleOnProjectAction(action, value ?? null)
                 }}
               />
              </Box>
@@ -65,12 +65,12 @@ const IdeasPage: React.FC = () => {
           })
         }
       </HighlightCarousel>
-      <Box className='flex mt-4 mb-10 border-2 border-primary-950 rounded-2xl h-screen shadow-solid'>
-        <Box className='flex p-5 bg-primary-800 rounded-s-lg relative border-r-4 border-primary-950'>
-          <Typography variant='h1' className='text-primary-300'>Projects</Typography>
+      <Box className='flex flex-col mobile:flex-row mt-4 mb-10 border-2 border-primary-950 rounded-2xl laptop:h-screen shadow-solid'>
+        <Box className='flex p-5 bg-primary-800 rounded-t-lg laptop:rounded-e-none laptop:rounded-s-lg relative laptop:border-r-4 border-primary-950'>
+          <Typography variant='h1' className='text-primary-300 laptop:mb-8'>Projects</Typography>
         </Box>
-        <Box className='w-11/12 pb-5'>
-          <Box className='grid grid-cols-1 wide-screen:grid-cols-2 pl-10 pr-10 pb-10 wide-screen:pl-2 h-full overflow-y-auto'>
+        <Box className='laptop:w-11/12 pb-5 px-1'>
+          <Box className='grid grid-cols-1 wide-screen:grid-cols-2 laptop:pl-10 laptop:pr-10 laptop:pb-10 wide-screen:pl-2 laptop:h-full h-[500px] overflow-y-auto gap-4 laptop:gap-0'>
             {
               dataProjectModel?.map((data: IProject) => {
                 return (
@@ -87,12 +87,12 @@ const IdeasPage: React.FC = () => {
         </Box>
       </Box>
 
-      <Box className='flex flex-col mt-4 mb-10 border-2 border-primary-950 rounded-2xl h-screen shadow-solid'>
-        <Box className='p-5  bg-primary-800 rounded-t-lg border-b-4 border-primary-950'>
+      <Box className='flex flex-col mt-4 mb-10 border-2 border-primary-950 rounded-2xl laptop:h-full h-[500px] shadow-solid'>
+        <Box className='p-5 bg-primary-800 rounded-t-lg border-b-4 border-primary-950'>
           <Typography variant='h1' className='text-primary-300'>Experimental</Typography>
         </Box>
-        <Box className='pb-5'>
-          <Box className='grid grid-cols-1 wide-screen:grid-cols-2 pb-10 gap-2 pl-28 wide-screen:pl-20 h-[800px] overflow-y-auto border rounded-s-lg'>
+        <Box className='pb-5 px-1'>
+          <Box className='grid grid-cols-1 wide-screen:grid-cols-2 pb-10 gap-2 laptop:pl-28 wide-screen:pl-20 h-[400px] laptop:h-[800px] overflow-y-auto rounded-s-lg'>
             {
               dataProjectExperimentalModel?.map((data: IProject) => {
                 return (
@@ -120,8 +120,8 @@ const IdeasPage: React.FC = () => {
           selectedProject?.action == 'open' && (
             <PreviewProjectPanel 
               data={selectedProject?.data}
-              onSlide={(value) => {
-                handleOnProjectAction('visit', value ?? null)
+              onAction={(action, value) => {
+                handleOnProjectAction(action, value ?? null)
               }}
             />
           )

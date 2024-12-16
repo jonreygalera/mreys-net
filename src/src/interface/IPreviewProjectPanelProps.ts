@@ -1,7 +1,8 @@
+import { actionType } from "../types/TAction";
 import IProject from "./IProject";
 
 export default interface IPreviewProjectPanelProps {
   data?: IProject | null;
   title?: string;
-  onSlide?: (data?: IProject | null) => void
+  onAction?: (actionType: actionType, data?: IProject | null) => void
 }

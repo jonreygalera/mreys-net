@@ -37,7 +37,7 @@ const HighlightCarousel: React.FC<Props> = ({ children, title, timeInterval = 10
 
   return (
     <Box
-      className='relative min-h-full h-[600px] bg-primary-50 border-2 border-primary-900 rounded-3xl shadow-solid'
+      className='relative h-[350px] laptop:min-h-full laptop:h-[600px] bg-primary-50 border-2 border-primary-900 rounded-3xl shadow-solid'
       onMouseEnter={() => setStartInterval(false)}
       onMouseLeave={() => setStartInterval(true)}
     >
@@ -71,7 +71,7 @@ const HighlightCarousel: React.FC<Props> = ({ children, title, timeInterval = 10
       </Box>
       {/* Indicators */}
       <Box
-        className='absolute flex top-[568px] justify-center items-center mt-4 ml-4'
+        className='absolute hidden laptop:flex top-[568px] justify-center items-center mt-4 ml-4'
       >
         {
           items.map((_, idx) => {
@@ -90,15 +90,15 @@ const HighlightCarousel: React.FC<Props> = ({ children, title, timeInterval = 10
       </Box>
       <Button 
         onClick={prevSlide}
-        className='absolute flex items-center bg-primary-900 text-primary-50 rounded-e-3xl h-[100px] top-64 hover:bg-primary-800'
+        className='absolute flex items-center bg-primary-900 opacity-80 hover:opacity-100 text-primary-50 rounded-e-3xl laptop:h-[100px] top-1/2 laptop:top-64 border-y-2 border-r-2 border-primary-500 shadow-solid'
       >
-        <ChevronLeftIcon className='size-7'/>
+        <ChevronLeftIcon className='size-4 laptop:size-7'/>
       </Button>
       <Button 
         onClick={nextSlide}
-        className='absolute flex items-center bg-primary-900 text-primary-50 rounded-s-3xl h-[100px] top-64 right-0 hover:bg-primary-800'
+        className='absolute flex items-center bg-primary-900 opacity-80 hover:opacity-100 text-primary-50 rounded-s-3xl laptop:h-[100px] top-1/2 laptop:top-64 right-0 border-y-2 border-l-2 border-primary-500 shadow-solid'
       >
-        <ChevronRightIcon className='size-7'/>
+        <ChevronRightIcon className='size-4 laptop:size-7'/>
       </Button>
     </Box>
   );

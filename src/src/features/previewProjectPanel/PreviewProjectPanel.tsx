@@ -11,7 +11,7 @@ import IPreviewProjectPanelProps from '../../interface/IPreviewProjectPanelProps
 const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
   const {
     data,
-    onSlide,
+    onAction,
   } = props;
 
   return (
@@ -19,35 +19,43 @@ const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
       className='
         w-full
         relative 
-        h-[600px]
-        overflow-hidden 
+        overflow-hidden
         rounded-3xl
       '
     >
-      <Box className='grid grid-cols-2 h-full w-full'>
-        <Box className='flex flex-col p-20 pt-20 gap-5'>
-          
-          <Box className='flex w-full flex-col gap-5 min-h-[270px] max-h-[270px] ml-2'>
-            <Box className='relative pt-5'>
-              <Typography variant='title'>
-                {data?.title ?? 'Title'}
-              </Typography>
+      <Box className='flex flex-col-reverse laptop:grid laptop:grid-cols-2 h-full w-full'>
+        <Box className='flex flex-col laptop:p-20 laptop:pt-20 laptop:gap-5 border-t-2 border-t-primary-950 laptop:border-none bg-primary-300 laptop:bg-transparent h-[139px]'>
+
+          <Box className='flex w-full flex-col laptop:gap-5 laptop:min-h-[270px] laptop:max-h-[270px] p-1 laptop:ml-2'>
+            <Box className='relative laptop:pt-5'>
+            <Box className='hidden laptop:block'>
+                <Typography variant={'title'}>
+                  {data?.title ?? 'Title'}
+                </Typography>
+              </Box>
+              <Box className='laptop:hidden'>
+                <Typography variant={'h3'}>
+                  {data?.title ?? 'Title'}
+                </Typography>
+              </Box>
             </Box>
-            <Box className='max-w-full h-20 overflow-hidden relative'>
-              <Typography variant='body1' className='text-ellipsis'>
+            <Box className='max-w-full h-10  relative'>
+              <Typography variant='body1' className='text-ellipsis overflow-hidden' style={{ textWrap: 'nowrap'}}>
                 { data?.description ?? ''}
               </Typography>
             </Box>
-
-            <Box>
+            <Box className='hidden laptop:block'>
               Roles
             </Box>
+            <Button 
+              className='w-full border-2 rounded-2xl border-primary-950 laptop:hidden shadow-solid bg-green-400'
+              onClick={() => onAction?.('open', data)}>View</Button>
           </Box>
             
-          <hr className='mr-24 border-primary-300'/>
+          <hr className='hidden laptop:block mr-24 border-primary-300'/>
 
-          <Box className='flex w-full h-full relative px-5'>
-            <Box className='flex w-full h-full relative flex-col gap-2'>
+          <Box className='laptop:flex hidden w-full h-full relative px-5'>
+            <Box className='laptop:flex hidden w-full h-full relative flex-col gap-2'>
               <ButtonGroup>
               {
                   data?.joinData?.map((tech: any, idx) => (
@@ -66,25 +74,26 @@ const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
               </ButtonGroup> 
             </Box>
 
-            <Box className='absolute flex items-center gap-2 bottom-0 right-0'>
+            <Box className='absolute hidden laptop:flex items-center gap-2 bottom-0 right-0'>
               <Slide
                 className='w-[250px]'
                 label={'Slide to Visit'}
                 labelSlided={'Visited!'}
-                onSlided={() => onSlide?.(data)}
+                onSlided={() => onAction?.('visit', data)}
               />
             </Box>
           </Box>  
 
         </Box>
 
-        <Box className='mt-4'>
+        <Box className='laptop:mt-4 laptop:h-full bg-primary-50 laptop:bg-transparent'>
           <PileBox>
             <img 
               src={data?.imageSets ? (data.imageSets[0])?.source ?? '' : ''}
               className='
                 w-full
-                min-h-[500px]
+                h-[200px]
+                laptop:min-h-[500px]
                 shadow-2xl 
                 shadow-primary-700
                 rounded-3xl 

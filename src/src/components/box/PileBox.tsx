@@ -13,7 +13,7 @@ const PileBox: React.FC<Props> = (props) => {
           rounded-3xl
           relative
           justify-center
-          mb-2
+          laptop:mb-2
         '
       >
        <Box 

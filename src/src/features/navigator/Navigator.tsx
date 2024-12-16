@@ -53,7 +53,7 @@ const Navigator: React.FC<Props> = ({ onMouseEnter, onMouseLeave }) => {
 
   return (
     <Navigation 
-      className="ml-4 top-36"
+      className="laptop:ml-4 laptop:top-36"
       activeItem={{...selectedNavigationItem, index: navigationItemIndex}}
     >
       {NAVIGATOR_ITEMS.map((navigationItem, navigationItemIdx) => (
@@ -65,7 +65,7 @@ const Navigator: React.FC<Props> = ({ onMouseEnter, onMouseLeave }) => {
             tailwindUtil(
               "rounded-full",
               selectedNavigationItem.key === navigationItem.key && (
-                "bg-primary-800"
+                "bg-primary-800 border-2 border-primary-400 laptop:border-none"
               ),
               selectedNavigationItem.key !== navigationItem.key && (
                 'hover:animate-bounce'

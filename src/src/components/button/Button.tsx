@@ -13,7 +13,7 @@ const Button: React.FC<IButtonProps> = (props) => {
   return (
     <button 
       type="button"
-      className={tailwindUtil('inline-flex items-center justify-center px-4 py-2 text-sm font-medium', className)}
+      className={tailwindUtil('inline-flex items-center justify-center px-4 py-2 text-sm font-medium hover:translate-y-1', className)}
       {...others}
     >
       {startComponent && startComponent}

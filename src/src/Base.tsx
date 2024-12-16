@@ -4,7 +4,7 @@ import Navigator from './features/navigator/Navigator';
 import OutletLayout from './components/layout/OutletLayout';
 import Typography from './components/typography/Typography';
 import ScrollIndicator from './components/scrollIndicator/ScrollIndicator';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import INavigationItem from './interface/INavigationItem';
 import { tailwindUtil } from './utils/tailwindUtil';
 import BubbleChat from './features/bubbleChat/BubbleChat';
@@ -13,15 +13,33 @@ const Base = () => {
   const [selectedNavItem, setSelectedNavItem] = useState<INavigationItem | null>(null);
   const [scrollYValue, setScrollYValue ] = useState<number>(0);
 
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    setIsScrolling(true);
+
+    const timeout = setTimeout(() => {
+      setIsScrolling(false);
+      clearTimeout(timeout);
+    }, 1000);
+
+  }, [scrollYValue]);
+
   return (
     <Box
       className='flex flex-col'
     >
+      <Box className={
+          tailwindUtil('laptop:hidden flex border-2 justify-center border-primary-950 sticky inset-0 z-50 p-2 animate-fade-in shadow-solid bg-primary-100 rounded-b-md', isScrolling ? 'hidden' : 'flex')
+        }
+      >
+        <Typography variant='h1' className='tracking-[0.9em]'>MReY</Typography>
+      </Box>
       <ScrollIndicator onScrollY={(value) => setScrollYValue(value)}/>
      {
       selectedNavItem && (
         <Box
-          className='fixed top-0 left-0 z-50 h-full w-full flex flex-col bg-primary-800 transition-all animate-fade-in'
+          className='fixed top-0 left-0 z-50 h-full w-full hidden laptop:flex flex-col bg-primary-800 transition-all animate-fade-in'
           style={{ zIndex: 60 }}
         >
           <Box
@@ -58,12 +76,12 @@ const Base = () => {
         className='relative border border-transparent mt-42 h-[400px]'
       >
         <Box className={
-          tailwindUtil('absolute top-36 rotate-12 left-[650px] wide-screen:left-[900px] translate-all delay-200', scrollYValue >= 100 ? 'opacity-100' : ' opacity-0')
+          tailwindUtil('absolute top-36 hidden rotate-12 left-[650px] wide-screen:left-[900px] translate-all delay-200', scrollYValue >= 100 ? 'opacity-100' : ' opacity-0')
         }>
           <BubbleChat/>
         </Box>
         <Box
-          className='bg-primary-800 h-[400px] mt-32 flex justify-center items-center border-t-8 border-primary-950'
+          className='bg-primary-800 h-[400px] laptop:mt-32 flex justify-center items-center border-t-8 border-primary-950'
         >
           <Box className='flex flex-col items-center justify-center'>
             <Box className='rounded-full border-8 border-primary-950 overflow-hidden '>
