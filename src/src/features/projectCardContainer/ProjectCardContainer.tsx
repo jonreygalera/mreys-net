@@ -50,18 +50,21 @@ const ProjectCardContainer: React.FC<IProjectCardContainerProps> = ({
             <Box className="flex gap-1 ">
               <ButtonGroup>
                 <Button
+                  className='bg-blue-300 hover:bg-blue-400'
                   startComponent={<ArrowUpRightIcon className="size-3 mx-1 items-center" />}
                   onClick={() => onClickAction?.('visit', data)}
                 >
                   Visit
                 </Button>
                 <Button
+                  className='bg-amber-100 hover:bg-amber-300'
                   startComponent={isBookmark ? <StarIconSolid className="size-3 mx-1 items-center text-yellow-400" /> : <StarIconOutline className="size-3 mx-1 items-center" />}
                   onClick={() => onClickAction?.('star', data)}
                 >
                   Star
                 </Button>
                 <Button
+                  className='bg-lime-100 hover:bg-lime-200'
                   startComponent={<BookOpenIconOutline className="size-3 mx-1 items-center" />}
                   onClick={() => onClickAction?.('open', data)}
                 >

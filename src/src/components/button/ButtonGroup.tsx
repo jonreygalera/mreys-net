@@ -17,6 +17,8 @@ const ButtonGroup: React.FC<IButtonGroupProps> = (props) => {
       <Box className="inline-flex flex-col laptop:gap-0 laptop:flex-row rounded-lg laptop:shadow-solid w-full laptop:w-fit p-2 laptop:p-0" role="group">
         { 
           childrenContainer.map((child: any, childIdx) => {
+            const propsChild : any = React.isValidElement(child) ? (child?.props ?? null) : null;
+
             let cornerClass = '';
 
             if(childIdx == 0 && childLength > 1) {
@@ -30,7 +32,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = (props) => {
             return (<Box>
               {
                 React.cloneElement(child, {
-                  className: tailwindUtil(cornerClass, 'bg-primary-100 border-2 border-primary-950 hover:bg-primary-300 hover:font-bold w-full')
+                  className: tailwindUtil(cornerClass, 'bg-primary-100 border-2 border-primary-950 hover:bg-primary-300 hover:font-bold w-full', propsChild?.className)
                 })
               }
             </Box>)
