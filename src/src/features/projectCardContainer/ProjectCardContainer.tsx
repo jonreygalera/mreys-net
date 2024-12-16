@@ -57,9 +57,9 @@ const ProjectCardContainer: React.FC<IProjectCardContainerProps> = ({
                 </Button>
                 <Button
                   startComponent={isBookmark ? <StarIconSolid className="size-3 mx-1 items-center text-yellow-400" /> : <StarIconOutline className="size-3 mx-1 items-center" />}
-                  onClick={() => onClickAction?.('bookmark', data)}
+                  onClick={() => onClickAction?.('star', data)}
                 >
-                  Bookmark
+                  Star
                 </Button>
                 <Button
                   startComponent={<BookOpenIconOutline className="size-3 mx-1 items-center" />}
@@ -76,4 +76,4 @@ const ProjectCardContainer: React.FC<IProjectCardContainerProps> = ({
   );
 };
 
-export default ProjectCardContainer;
+export default React.memo(ProjectCardContainer);

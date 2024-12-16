@@ -17,7 +17,7 @@ const IconButton: React.FC<IIconButtonProps> = (props) => {
       onClick={onClick} 
       {...ButtonComponentProps}
       className={tailwindUtil(
-        'flex flex-col items-center min-w-11 min-h-11 p-2.5 rounded-xl', 
+        'flex flex-col items-center min-w-11 min-h-11 p-2.5 rounded-full shadow-solid border-2 border-primary-800', 
         ButtonComponentProps?.className, 
       )}
     >

@@ -1,1 +1,1 @@
-export type actionType = 'visit' | 'bookmark' | 'open';
+export type actionType = 'visit' | 'star' | 'open';

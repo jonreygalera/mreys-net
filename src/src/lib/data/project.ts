@@ -603,6 +603,31 @@ const project = [
         "source": NoImageAvailable
       }
     ]
+  },
+  {
+    "id": 26,
+    "key": "ft-hiring",
+    "title": "FT Hiring",
+    "description": "Led the development of the Dailysteam system.",
+    "version": "v1",
+    "tags": ["system development", "lead developer"],
+    "roles": ["Lead Developer"],
+    "url": null,
+    "fallbackUrl": "https://nms.ph?ref=https://jonreygalera.mreys.net",
+    "imageSets": [
+      {
+        "id": 1,
+        "source": NoImageAvailable
+      },
+      {
+        "id": 2,
+        "source": NoImageAvailable
+      },
+      {
+        "id": 3,
+        "source": NoImageAvailable
+      }
+    ]
   }
 ]
 

@@ -11,6 +11,7 @@ import { useProjectExperimentalModelHook } from '../hooks/useProjectExperimental
 import { actionType } from '../types/TAction';
 import { openUrl } from '../utils/urlUtil';
 import useLocalStorage from '../hooks/useLocalStorage';
+import NoProjectLink from '../features/notFound/NoProjectLink';
 
 interface ISelectedProject {
   action: actionType,
@@ -26,11 +27,11 @@ const IdeasPage: React.FC = () => {
   const [ bookmarkProject , setBookmarkProject ] = useLocalStorage<string[]>('bookmark-project', []);
 
   const handleOnProjectAction = (actionType: actionType, dataValue: IProject | null) => {
-    if(dataValue?.url && actionType != 'bookmark') {
+    if(dataValue?.url &&  actionType === 'visit') {
       openUrl(dataValue.url);
       setSelectedProject(null);
     } else {
-      if(actionType == 'bookmark') {
+      if(actionType == 'star') {
         const cloneBookmarkProject = bookmarkProject;
         if(cloneBookmarkProject.includes(dataValue?.key as string)) {
           setBookmarkProject(cloneBookmarkProject.filter(data => data != dataValue?.key as string));
@@ -47,7 +48,7 @@ const IdeasPage: React.FC = () => {
     <Box className='relative mt-5'>
       <HighlightCarousel title='Ideas'>
         {
-          dataProjectModel?.map((data: IProject) => {
+          [...dataProjectModel, ...dataProjectExperimentalModel]?.map((data: IProject) => {
             return (
              <Box
               className='w-full relative'
@@ -112,26 +113,23 @@ const IdeasPage: React.FC = () => {
         isOpen={Boolean(selectedProject) && ['open', 'visit'].includes(selectedProject?.action as string)} 
         title={' '}
         onClose={() => setSelectedProject(null)}
+        className={selectedProject?.action == 'visit' ? 'w-96' : ''}
       >
         <Box>
          {
           selectedProject?.action == 'open' && (
             <PreviewProjectPanel 
               data={selectedProject?.data}
+              onSlide={(value) => {
+                handleOnProjectAction('visit', value ?? null)
+              }}
             />
           )
          }
 
          {
           selectedProject?.action == 'visit' && (
-            <Box>
-              {
-                (!selectedProject.data?.url && selectedProject?.data?.fallbackUrl) && <Typography>Sorry, we cannot visit the website!</Typography>
-              }
-              {
-                selectedProject?.data?.fallbackUrl && (<Typography>Maybe you can visit their website <a href={selectedProject.data.fallbackUrl ?? ''} target='_blank' className='text-blue-500'>{selectedProject.data.title ?? ''}</a></Typography>)
-              }
-            </Box>
+            <NoProjectLink data={selectedProject?.data}/>
           )
          }
         </Box>

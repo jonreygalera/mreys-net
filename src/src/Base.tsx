@@ -21,7 +21,7 @@ const Base = () => {
      {
       selectedNavItem && (
         <Box
-          className='fixed top-0 left-0 z-50 h-full w-full flex flex-col bg-primary-800 transition-all animate-fade-in '
+          className='fixed top-0 left-0 z-50 h-full w-full flex flex-col bg-primary-800 transition-all animate-fade-in'
           style={{ zIndex: 60 }}
         >
           <Box
