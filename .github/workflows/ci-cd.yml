@@ -90,15 +90,6 @@ jobs:
 
       - name: Pull and Deploy
         run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ env.SSH_KEY }} ${{ env.DO_USER }}@${{ env.DO_IP }} << 'EOF'
-            docker pull ${{ env.IMAGE_NAME }}
-            docker stop ${{ env.CONTAINER_NAME }} || true
-            docker rm ${{ env.CONTAINER_NAME }} || true
-            docker run -d --name ${{ env.CONTAINER_NAME }} \
-              --restart always \
-              -v $(pwd)/src:/app \
-              -v /app/node_modules \
-              --network nginx_proxy-network \
-              -p 80:80 \
-              ${{ env.IMAGE_NAME }}
+          ssh -o StrictHostKeyChecking=no ${{ env.DO_USER }}@${{ env.DO_IP }} -p 22 << 'EOF'
+            sudo mkdir -p ACTION_MKDIR_COMMAND
           EOF
