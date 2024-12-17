@@ -33,10 +33,12 @@ jobs:
           node-version: 20
       # Install dependencies
       - name: Install Dependencies
+        working-directory: ./src
         run: |
-          npm install
+          npm ci
       # Run TypeScript and Tailwind Build
       - name: Build React App
+        working-directory: ./src
         run: |
           npm run build
 
