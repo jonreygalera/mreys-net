@@ -90,7 +90,7 @@ jobs:
 
       - name: Pull and Deploy
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ env.DO_USER }}@${{ env.DO_IP }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i ${{ env.SSH_KEY }} ${{ env.DO_USER }}@${{ env.DO_IP }} << 'EOF'
             docker pull ${{ env.IMAGE_NAME }}
             docker stop ${{ env.CONTAINER_NAME }} || true
             docker rm ${{ env.CONTAINER_NAME }} || true
