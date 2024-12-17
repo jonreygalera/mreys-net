@@ -1,24 +1,34 @@
-# Use the Node.js 20 Alpine base image
-FROM node:20-alpine
+# Use the Node.js 20 Alpine base image for the build stage
+FROM node:20-alpine as build
 
 # Set working directory
 WORKDIR /app
 
-# Copy only package.json and package-lock.json for caching
+# Copy package.json and package-lock.json to install dependencies
 COPY ./src/package.json ./src/package-lock.json ./
-
-# Install dependencies using npm ci
 RUN npm ci
 
-# Copy the rest of the application files
+# Copy the rest of the source code and build the app
 COPY ./src .
+RUN npm run build
 
-# Expose port (if applicable)
-# EXPOSE 3000
+# Use the nginx:alpine image for the runtime stage
+FROM nginx:alpine
 
+# Install supervisord
+RUN apk add --no-cache supervisor
 
-# Command to start the application
-CMD ["npm", "run", "dev"]
+# Copy the built files from the build stage to nginx's html folder
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Copy the supervisord configuration file
+COPY ./playbook/conf/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Expose port 80 for the web server
+EXPOSE 80
+
+# Start supervisord in the foreground
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Guide run image
 # 1. Build the Docker Image

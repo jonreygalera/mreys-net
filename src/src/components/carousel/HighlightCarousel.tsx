@@ -9,7 +9,7 @@ interface Props extends PropsWithChildren {
   timeInterval?: number;
 }
 
-const HighlightCarousel: React.FC<Props> = ({ children, title, timeInterval = 10 }) => {
+const HighlightCarousel: React.FC<Props> = ({ children, timeInterval = 10 }) => {
   const items = Children.toArray(children);
 
   const [currentIndex, setCurrentIndex] = useState(0);

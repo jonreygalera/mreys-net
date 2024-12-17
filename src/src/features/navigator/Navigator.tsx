@@ -11,7 +11,6 @@ import IconButton from '../../components/iconButton/IconButton';
 import INavigationItem from '../../interface/INavigationItem';
 import Box from '../../components/box/Box';
 import { tailwindUtil } from '../../utils/tailwindUtil';
-import Typography from '../../components/typography/Typography';
 
 const NAVIGATOR_ITEMS: INavigationItem[] = [
   { key: 'nav-item-home', label: 'Home', icon: HomeIcon, path: '/' },

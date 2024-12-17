@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   mreys-net:
     build: 
@@ -11,8 +9,8 @@ services:
       - ./src:/app
       - /app/node_modules
     networks:
-      - docker-nginx_proxy-network
+      - nginx_proxy-network
 
 networks:
-  docker-nginx_proxy-network:
+  nginx_proxy-network:
     external: true

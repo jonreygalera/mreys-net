@@ -1,0 +1,19 @@
+name: MReYs Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test App
+    runs-on: ubuntu-latest
+    steps:
+       # Checkout code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        

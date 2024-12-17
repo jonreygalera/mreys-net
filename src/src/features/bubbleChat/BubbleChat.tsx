@@ -6,7 +6,7 @@ interface Props {
 
 }
 
-const BubbleChat: React.FC<Props> = (props) => {
+const BubbleChat: React.FC<Props> = () => {
   return (
     <Box
       className={
