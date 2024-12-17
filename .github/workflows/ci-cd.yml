@@ -75,13 +75,18 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-        
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ env.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ env.DO_IP }} >> ~/.ssh/known_hosts
+
+      # - name: Set up SSH
+      #   run: |
+      #     mkdir -p ~/.ssh
+      #     echo "${{ env.SSH_KEY }}" > ~/.ssh/id_rsa
+      #     chmod 600 ~/.ssh/id_rsa
+      #     ssh-keyscan -H ${{ env.DO_IP }} >> ~/.ssh/known_hosts
+
+      - name: Set up SSH Agent
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ env.SSH_KEY }}
 
       - name: Pull and Deploy
         run: |
