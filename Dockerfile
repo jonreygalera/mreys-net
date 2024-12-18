@@ -5,7 +5,7 @@ FROM node:20-alpine as build
 WORKDIR /app
 
 # Copy package.json and package-lock.json to install dependencies
-COPY ./src/package.json ./src/package-lock.json ./
+COPY ./src/package*.json ./
 RUN npm ci
 
 # Copy the rest of the source code and build the app
@@ -23,6 +23,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 
 # Copy the supervisord configuration file
 COPY ./playbook/conf/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./playbook/conf/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Expose port 80 for the web server
 EXPOSE 80
