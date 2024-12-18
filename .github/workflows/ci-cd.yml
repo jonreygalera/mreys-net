@@ -100,7 +100,7 @@ jobs:
             docker rm ${{ env.CONTAINER_NAME }} || true
             docker run -d --name ${{ env.CONTAINER_NAME }} \
               --restart always \
-              -v $(pwd)/src:/app \
+              -v /app \
               -v /app/node_modules \
               --network nginx_proxy-network \
               ${{ env.IMAGE_NAME }}
