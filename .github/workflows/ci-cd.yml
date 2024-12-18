@@ -66,7 +66,11 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ env.DOCKER_USERNAME }}/${{ env.APP_NAME }}:latest
+          cache-from: type=registry,ref=${{ env.DOCKER_USERNAME }}/${{ env.APP_NAME }}:cache
+          cache-to: type=inline
+          tags: |
+            ${{ env.DOCKER_USERNAME }}/${{ env.APP_NAME }}:latest
+            ${{ env.DOCKER_USERNAME }}/${{ env.APP_NAME }}:${{ github.sha }}
 
   deploy:
     name: Deploy to DigitalOcean
@@ -99,6 +103,5 @@ jobs:
               -v $(pwd)/src:/app \
               -v /app/node_modules \
               --network nginx_proxy-network \
-              -p 80:80 \
               ${{ env.IMAGE_NAME }}
           EOF
