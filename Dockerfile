@@ -19,11 +19,13 @@ FROM nginx:alpine
 RUN apk add --no-cache supervisor
 
 # Copy the built files from the build stage to nginx's html folder
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /app/dist
 
 # Copy the supervisord configuration file
 COPY ./playbook/conf/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY ./playbook/conf/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./playbook/conf/nginx/localhost.conf /etc/nginx/conf.d/localhost.conf
+
+RUN rm  /etc/nginx/conf.d/default.conf
 
 # Expose port 80 for the web server
 EXPOSE 80
