@@ -1,6 +1,3 @@
-import Nmsaccountsv1Image1 from "../../assets/images/nmsaccountsv1/image1.png";
-import Nmsaccountsv1Image2 from "../../assets/images/nmsaccountsv1/image2.png";
-import Nmsaccountsv1Image3 from "../../assets/images/nmsaccountsv1/image3.png";
 import NoImageAvailable from "../../assets/images/no-image-available.png";
 
 const project = [

@@ -2,7 +2,6 @@ import React from 'react';
 import Box from '../../components/box/Box';
 import Typography from '../../components/typography/Typography';
 import Button from '../../components/button/Button';
-import Slide from '../../components/slide/Slide';
 import ButtonGroup from '../../components/button/ButtonGroup';
 import PileBox from '../../components/box/PileBox';
 import IPreviewProjectPanelProps from '../../interface/IPreviewProjectPanelProps';
