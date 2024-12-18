@@ -150,9 +150,9 @@ const techStack = [
     "meta": null
   },
   {
-    "id": 8,
+    "id": 16,
     "key": "angular-1",
-    "label": "Angular",
+    "label": "Angular 1",
     "version": null,
     "tags": [],
     "icon": "https://picsum.photos/id/237/200/300",
@@ -160,9 +160,19 @@ const techStack = [
     "meta": null
   },
   {
-    "id": 9,
-    "key": "angular-1",
-    "label": "Angular",
+    "id": 17,
+    "key": "material-ui",
+    "label": "MUI",
+    "version": null,
+    "tags": [],
+    "icon": "https://picsum.photos/id/237/200/300",
+    "url": "https://picsum.photos/id/237/200/300",
+    "meta": null
+  },
+  {
+    "id": 18,
+    "key": "reactjs",
+    "label": "Reactjs",
     "version": null,
     "tags": [],
     "icon": "https://picsum.photos/id/237/200/300",

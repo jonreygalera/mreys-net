@@ -54,7 +54,7 @@ const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
             
           <hr className='hidden laptop:block mr-24 border-primary-300'/>
 
-          <Box className='laptop:flex hidden w-full h-full relative px-5'>
+          <Box className='laptop:flex hidden w-full h-[2250px] relative px-5'>
             <Box className='laptop:flex hidden w-full h-full relative flex-col gap-2'>
               <ButtonGroup>
               {
@@ -74,14 +74,14 @@ const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
               </ButtonGroup> 
             </Box>
 
-            <Box className='absolute hidden laptop:flex items-center gap-2 bottom-0 right-0'>
+            {/* <Box className=' hidden laptop:flex items-center gap-2 bottom-0 right-0 bg-red-500'>
               <Slide
                 className='w-[250px]'
                 label={'Slide to Visit'}
                 labelSlided={'Visited!'}
                 onSlided={() => onAction?.('visit', data)}
               />
-            </Box>
+            </Box> */}
           </Box>  
 
         </Box>

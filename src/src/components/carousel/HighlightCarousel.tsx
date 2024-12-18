@@ -23,17 +23,17 @@ const HighlightCarousel: React.FC<Props> = ({ children, timeInterval = 10 }) => 
     setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
   };
   
-  useEffect(() => {
-    let interval = null;
-    if(startInterval) {
-      interval = setInterval(nextSlide, timeInterval * 1000);
-    }
-    return () => {
-      if(startInterval && interval) {
-        clearInterval(interval);
-      }
-    };
-  }, [currentIndex, startInterval, timeInterval]);
+  // useEffect(() => {
+  //   let interval = null;
+  //   if(startInterval) {
+  //     interval = setInterval(nextSlide, timeInterval * 1000);
+  //   }
+  //   return () => {
+  //     if(startInterval && interval) {
+  //       clearInterval(interval);
+  //     }
+  //   };
+  // }, [currentIndex, startInterval, timeInterval]);
 
   return (
     <Box
@@ -90,13 +90,13 @@ const HighlightCarousel: React.FC<Props> = ({ children, timeInterval = 10 }) => 
       </Box>
       <Button 
         onClick={prevSlide}
-        className='absolute flex items-center bg-primary-900 opacity-80 hover:opacity-100 text-primary-50 rounded-e-3xl laptop:h-[100px] top-1/2 laptop:top-64 border-y-2 border-r-2 border-primary-500 shadow-solid'
+        className='absolute flex items-center bg-primary-900 opacity-80 hover:opacity-100 text-primary-50 rounded-full h-[50px] w-[50px] top-[44%] laptop:top-64 border-2 border-primary-500 shadow-solid mx-2'
       >
         <ChevronLeftIcon className='size-4 laptop:size-7'/>
       </Button>
       <Button 
         onClick={nextSlide}
-        className='absolute flex items-center bg-primary-900 opacity-80 hover:opacity-100 text-primary-50 rounded-s-3xl laptop:h-[100px] top-1/2 laptop:top-64 right-0 border-y-2 border-l-2 border-primary-500 shadow-solid'
+        className='absolute flex items-center bg-primary-900 opacity-80 hover:opacity-100 text-primary-50 rounded-full h-[50px] w-[50px] top-[44%] right-0 laptop:top-64 border-2 border-primary-500 shadow-solid mx-2'
       >
         <ChevronRightIcon className='size-4 laptop:size-7'/>
       </Button>

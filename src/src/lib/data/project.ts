@@ -67,15 +67,15 @@ const project = [
     "imageSets": [
       {
         "id": 1,
-        "source": Nmsaccountsv1Image1
+        "source": NoImageAvailable
       },
       {
         "id": 2,
-        "source": Nmsaccountsv1Image2
+        "source": NoImageAvailable
       },
       {
         "id": 3,
-        "source": Nmsaccountsv1Image3
+        "source": NoImageAvailable
       }
     ]
   },
