@@ -23,17 +23,17 @@ const HighlightCarousel: React.FC<Props> = ({ children, timeInterval = 10 }) => 
     setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
   };
   
-  // useEffect(() => {
-  //   let interval = null;
-  //   if(startInterval) {
-  //     interval = setInterval(nextSlide, timeInterval * 1000);
-  //   }
-  //   return () => {
-  //     if(startInterval && interval) {
-  //       clearInterval(interval);
-  //     }
-  //   };
-  // }, [currentIndex, startInterval, timeInterval]);
+  useEffect(() => {
+    let interval = null;
+    if(startInterval) {
+      interval = setInterval(nextSlide, timeInterval * 1000);
+    }
+    return () => {
+      if(startInterval && interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [currentIndex, startInterval, timeInterval]);
 
   return (
     <Box
