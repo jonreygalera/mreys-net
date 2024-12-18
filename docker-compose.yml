@@ -5,9 +5,9 @@ services:
       context: .
     container_name: mreys-net
     restart: always
-    volumes:
-      - ./src:/app
-      - /app/node_modules
+    # volumes:
+    #   - ./src:/app
+    #   - /app/node_modules
     networks:
       - nginx_proxy-network
 
