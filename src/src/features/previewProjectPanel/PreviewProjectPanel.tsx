@@ -2,9 +2,10 @@ import React from 'react';
 import Box from '../../components/box/Box';
 import Typography from '../../components/typography/Typography';
 import Button from '../../components/button/Button';
-import ButtonGroup from '../../components/button/ButtonGroup';
 import PileBox from '../../components/box/PileBox';
 import IPreviewProjectPanelProps from '../../interface/IPreviewProjectPanelProps';
+import Chip from '../../components/chip/Chip';
+import ITechStack from '../../interface/ITechStack';
 
 
 const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
@@ -54,23 +55,17 @@ const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
           <hr className='hidden laptop:block mr-24 border-primary-300'/>
 
           <Box className='laptop:flex hidden w-full h-[2250px] relative px-5'>
-            <Box className='laptop:flex hidden w-full h-full relative flex-col gap-2'>
-              <ButtonGroup>
+            <Box className='laptop:grid laptop:grid-cols-4 laptop:gap-2 hidden w-full h-full gap-3'>
               {
-                  data?.joinData?.map((tech: any, idx) => (
-                    <Button
-                      key={`button-group-tech-stack-${idx}`}
-                      onClick={() => console.log('test')}
-                      startComponent={<svg className="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
-                        </svg>
-                      }
-                    >
-                      {tech?.label ?? ''}
-                    </Button>
-                  ))
-                }
-              </ButtonGroup> 
+                data?.joinData?.map((tech: ITechStack, idx) => (
+                  <Chip
+                    key={`button-group-tech-stack-${idx}`}
+                  >
+                    { tech?.icon && React.createElement(tech.icon, { className: 'h-5 w-5'})}
+                    {(tech?.label ?? '')}
+                  </Chip>
+                ))
+              }
             </Box>
 
             {/* <Box className=' hidden laptop:flex items-center gap-2 bottom-0 right-0 bg-red-500'>

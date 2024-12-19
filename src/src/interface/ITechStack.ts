@@ -7,4 +7,6 @@ export default interface ITechStack {
   tags?: string[];
   icon?: any;
   url?: string|null;
+  meta?: any;
+  status?: 'inactive' | 'active';
 }
