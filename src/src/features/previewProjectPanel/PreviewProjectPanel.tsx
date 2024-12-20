@@ -45,8 +45,15 @@ const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
                 { data?.description ?? ''}
               </Typography>
             </Box>
-            <Box className='hidden laptop:block'>
-              Roles
+            <Box className='hidden laptop:flex flex-col'>
+              Roles:
+              <Box className='flex'>
+                {
+                  data?.roles?.map((role) => (
+                    <Typography>{role}</Typography>
+                  ))
+                }
+              </Box>
             </Box>
             <Button 
               className='w-full border-2 rounded-2xl border-primary-950 laptop:hidden shadow-solid bg-green-400'

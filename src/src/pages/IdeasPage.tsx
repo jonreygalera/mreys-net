@@ -49,7 +49,7 @@ const IdeasPage: React.FC = () => {
     useEffect(() => {
     const interval = setInterval(() => {
       setFeaturedProject([...getNShuffleddata(dataProjectModel, 5), ...getNShuffleddata(dataProjectExperimentalModel, 5)])
-    }, 30 * 1000);
+    }, 600 * 1000);
 
     return () => {
       clearInterval(interval);

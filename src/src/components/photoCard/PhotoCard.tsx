@@ -24,6 +24,7 @@ const PhotoCard: React.FC<IPhotoCardProps> = (props) => {
         cursor-pointer
         border-2
         border-primary-950
+        bg-primary-50
       `, 
       typeof height == 'string' ? height : `h-${height}`,
       typeof width == 'string' ? width : `w-${width}`

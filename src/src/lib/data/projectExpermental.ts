@@ -1,4 +1,4 @@
-import NoImageAvailable from "../../assets/images/no-image-available.png";
+import MreyIcon from "../../assets/icon.svg";
 
 const projectExperimental = [
   {
@@ -13,15 +13,15 @@ const projectExperimental = [
     "imageSets": [
       {
         "id": 1,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 2,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 3,
-        "source": NoImageAvailable
+        "source": MreyIcon
       }
     ]
   },
@@ -37,15 +37,15 @@ const projectExperimental = [
     "imageSets": [
       {
         "id": 1,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 2,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 3,
-        "source": NoImageAvailable
+        "source": MreyIcon
       }
     ]
   },
@@ -61,15 +61,15 @@ const projectExperimental = [
     "imageSets": [
       {
         "id": 1,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 2,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 3,
-        "source": NoImageAvailable
+        "source": MreyIcon
       }
     ]
   },
@@ -85,15 +85,15 @@ const projectExperimental = [
     "imageSets": [
       {
         "id": 1,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 2,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 3,
-        "source": NoImageAvailable
+        "source": MreyIcon
       }
     ]
   },
@@ -109,15 +109,15 @@ const projectExperimental = [
     "imageSets": [
       {
         "id": 1,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 2,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 3,
-        "source": NoImageAvailable
+        "source": MreyIcon
       }
     ]
   },
@@ -133,15 +133,15 @@ const projectExperimental = [
     "imageSets": [
       {
         "id": 1,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 2,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 3,
-        "source": NoImageAvailable
+        "source": MreyIcon
       }
     ]
   },
@@ -157,15 +157,15 @@ const projectExperimental = [
     "imageSets": [
       {
         "id": 1,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 2,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 3,
-        "source": NoImageAvailable
+        "source": MreyIcon
       }
     ]
   },
@@ -181,15 +181,15 @@ const projectExperimental = [
     "imageSets": [
       {
         "id": 1,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 2,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 3,
-        "source": NoImageAvailable
+        "source": MreyIcon
       }
     ]
   },
@@ -205,15 +205,15 @@ const projectExperimental = [
     "imageSets": [
       {
         "id": 1,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 2,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 3,
-        "source": NoImageAvailable
+        "source": MreyIcon
       }
     ]
   },
@@ -229,15 +229,15 @@ const projectExperimental = [
     "imageSets": [
       {
         "id": 1,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 2,
-        "source": NoImageAvailable
+        "source": MreyIcon
       },
       {
         "id": 3,
-        "source": NoImageAvailable
+        "source": MreyIcon
       }
     ]
   }
