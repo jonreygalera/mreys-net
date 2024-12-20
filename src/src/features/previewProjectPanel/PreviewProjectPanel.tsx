@@ -6,6 +6,7 @@ import PileBox from '../../components/box/PileBox';
 import IPreviewProjectPanelProps from '../../interface/IPreviewProjectPanelProps';
 import Chip from '../../components/chip/Chip';
 import ITechStack from '../../interface/ITechStack';
+import { openUrl } from '../../utils/urlUtil';
 
 
 const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
@@ -54,12 +55,14 @@ const PreviewProjectPanel: React.FC<IPreviewProjectPanelProps> = (props) => {
             
           <hr className='hidden laptop:block mr-24 border-primary-300'/>
 
-          <Box className='laptop:flex hidden w-full h-[2250px] relative px-5'>
+          <Box className='laptop:flex hidden w-full h-[2250px] relative px-5 flex-col'>
+            Collaborative Tools: 
             <Box className='laptop:grid laptop:grid-cols-4 laptop:gap-2 hidden w-full h-full gap-3'>
               {
                 data?.joinData?.map((tech: ITechStack, idx) => (
                   <Chip
                     key={`button-group-tech-stack-${idx}`}
+                    onClick={() => openUrl(tech.url)}
                   >
                     { tech?.icon && React.createElement(tech.icon, { className: 'h-5 w-5'})}
                     {(tech?.label ?? '')}

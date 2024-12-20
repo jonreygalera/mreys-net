@@ -5,14 +5,11 @@ import ProjectExperimentalModel from "../lib/models/projectModelExperimental";
 export const useProjectExperimentalModelHook = (params: { key: string, value?: any }) => {
 
   return useMemo(() => {
-    const projectModel = (new ProjectExperimentalModel).build()
+    const projectModel = (new ProjectExperimentalModel).getWithTechStacks();
 
-    if(params.key != 'all') {
-      projectModel.where(params.key, params.value);
-    }
     return {
-      data: projectModel.toRaw() as IProject[],
-      ok: true
+        data: projectModel as IProject[],
+        ok: true
     };
   }, [params]);
   

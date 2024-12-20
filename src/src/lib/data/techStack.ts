@@ -13,7 +13,15 @@ import {
   MySQL,
   Laravel,
   PHP,
-  JavaScript 
+  JavaScript, 
+  NPM,
+  ExpressJsDark,
+  TailwindCSS,
+  TypeScript,
+  DigitalOcean,
+  ViteJS,
+  MongoDB,
+  Bash
 } from "developer-icons";
 
 import ITechStack from "../../interface/ITechStack";
@@ -214,6 +222,127 @@ const techStack : ITechStack[] = [
     "tags": [],
     "icon": React,
     "url": "https://reactjs.org/",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 19,
+    "key": "npm",
+    "label": "NPM",
+    "version": null,
+    "tags": [],
+    "icon": NPM,
+    "url": "https://www.npmjs.com/",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 20,
+    "key": "composer",
+    "label": "Composer",
+    "version": null,
+    "tags": [],
+    "icon": null,
+    "url": "https://getcomposer.org/",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 21,
+    "key": "expressjs",
+    "label": "Expressjs",
+    "version": null,
+    "tags": [],
+    "icon": ExpressJsDark,
+    "url": "https://expressjs.com/",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 22,
+    "key": "tailwindcss",
+    "label": "TailwindCSS",
+    "version": null,
+    "tags": [],
+    "icon": TailwindCSS,
+    "url": "https://tailwindcss.com/",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 23,
+    "key": "typescript",
+    "label": "TypeScript",
+    "version": null,
+    "tags": [],
+    "icon": TypeScript,
+    "url": "https://www.typescriptlang.org/",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 24,
+    "key": "github-action",
+    "label": "Github Action",
+    "version": null,
+    "tags": [],
+    "icon": null,
+    "url": "https://github.com/features/actions",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 25,
+    "key": "digital-ocean",
+    "label": "Digital Ocean",
+    "version": null,
+    "tags": [],
+    "icon": DigitalOcean,
+    "url": "https://www.digitalocean.com/",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 26,
+    "key": "vitejs",
+    "label": "ViteJS",
+    "version": null,
+    "tags": [],
+    "icon": ViteJS,
+    "url": "https://vite.dev/",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 27,
+    "key": "mongodb",
+    "label": "MongoDB",
+    "version": null,
+    "tags": [],
+    "icon": MongoDB,
+    "url": "https://www.mongodb.com/",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 28,
+    "key": "bash",
+    "label": "Bash",
+    "version": null,
+    "tags": [],
+    "icon": Bash,
+    "url": "https://www.gnu.org/software/bash/",
+    "meta": null,
+    "status": "active"
+  },
+  {
+    "id": 29,
+    "key": "nginx",
+    "label": "nginx",
+    "version": null,
+    "tags": [],
+    "icon": Bash,
+    "url": "https://nginx.org",
     "meta": null,
     "status": "active"
   }

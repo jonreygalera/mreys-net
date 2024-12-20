@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import Box from '../components/box/Box';
 import ProjectCardContainer from '../features/projectCardContainer/ProjectCardContainer';
 import Typography from '../components/typography/Typography';
@@ -12,6 +12,7 @@ import { actionType } from '../types/TAction';
 import { openUrl } from '../utils/urlUtil';
 import useLocalStorage from '../hooks/useLocalStorage';
 import NoProjectLink from '../features/notFound/NoProjectLink';
+import { getNShuffleddata } from '../utils/arrayUtil';
 
 interface ISelectedProject {
   action: actionType,
@@ -25,6 +26,7 @@ const IdeasPage: React.FC = () => {
 
   const [ selectedProject, setSelectedProject ] = useState<ISelectedProject | null>(null);
   const [ bookmarkProject , setBookmarkProject ] = useLocalStorage<string[]>('bookmark-project', []);
+  const [ featuredProject, setFeaturedProject ] = useState<IProject[]>([]);
 
   const handleOnProjectAction = (actionType: actionType, dataValue: IProject | null) => {
     if(dataValue?.url &&  actionType === 'visit') {
@@ -44,11 +46,21 @@ const IdeasPage: React.FC = () => {
     }
   }
 
+    useEffect(() => {
+    const interval = setInterval(() => {
+      setFeaturedProject([...getNShuffleddata(dataProjectModel, 5), ...getNShuffleddata(dataProjectExperimentalModel, 5)])
+    }, 30 * 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [dataProjectModel, dataProjectExperimentalModel]);
+
   return (
     <Box className='relative mt-5'>
       <HighlightCarousel title='Ideas'>
         {
-          [...dataProjectModel, ...dataProjectExperimentalModel]?.map((data: IProject) => {
+          (featuredProject.length > 0 ? featuredProject : [...getNShuffleddata(dataProjectModel, 5), ...getNShuffleddata(dataProjectExperimentalModel, 5)])?.map((data: IProject) => {
             return (
              <Box
               className='w-full relative'

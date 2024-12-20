@@ -552,7 +552,7 @@ const project = [
     ]
   },
   {
-    "id": 24,
+    "id": 23,
     "key": "portfolio",
     "title": "Portfolio",
     "description": "Led the development of the Dailysteam system.",
@@ -577,7 +577,7 @@ const project = [
     ]
   },
   {
-    "id": 25,
+    "id": 24,
     "key": "gtranslate",
     "title": "GTranslate",
     "description": "Led the development of the Dailysteam system.",
@@ -602,7 +602,7 @@ const project = [
     ]
   },
   {
-    "id": 26,
+    "id": 25,
     "key": "ft-hiring",
     "title": "FT Hiring",
     "description": "Led the development of the Dailysteam system.",
