@@ -36,6 +36,11 @@ jobs:
         working-directory: ./src
         run: |
           npm ci
+      # Run Test First
+      - name: Unit Test
+        working-directory: ./src
+        run: |
+          npm run test
       # Run TypeScript and Tailwind Build
       - name: Build React App
         working-directory: ./src
