@@ -1,5 +1,5 @@
 import React from 'react';
-import Box from '../components/box/Box';
+import HomePage from './HomePage';
 
 interface Props {
 
@@ -7,9 +7,7 @@ interface Props {
 
 const ProfilePage: React.FC<Props> = () => {
   return (
-    <Box className='flex h-screen items-center justify-center'>
-      Jon Rey Galera | Ongoing
-    </Box>
+    <HomePage/>
   );
 }
 

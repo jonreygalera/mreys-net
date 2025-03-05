@@ -76,7 +76,7 @@ const Base = () => {
               <img src="https://avatars.githubusercontent.com/u/55083108?v=4" className='w-[100px] h-[100px] hover:animate-spin'/>
             </Box>
             <Typography variant='h4' className='text-primary-400'>
-              @ { (new Date()).getFullYear()} Jon Rey "Addy" Galera 
+              @ { (new Date()).getFullYear() } Jon Rey Galera 
             </Typography>
           </Box>
         </Box>
