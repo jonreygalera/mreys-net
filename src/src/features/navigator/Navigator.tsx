@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   ChatBubbleLeftRightIcon,
@@ -51,36 +51,40 @@ const Navigator: React.FC<Props> = ({ onMouseEnter, onMouseLeave }) => {
   }, [routeLocation]);
 
   return (
-    <Navigation 
-      className="laptop:ml-4 laptop:top-36"
-      activeItem={{...selectedNavigationItem, index: navigationItemIndex}}
-    >
-      {NAVIGATOR_ITEMS.map((navigationItem, navigationItemIdx) => (
-        <Box 
-          key={navigationItem.key}
-          onMouseEnter={() => onMouseEnter?.(navigationItem as INavigationItem)}
-          onMouseLeave={() => onMouseLeave?.()}
-          className={
-            tailwindUtil(
-              "rounded-full",
-              selectedNavigationItem.key === navigationItem.key && (
-                "bg-primary-800 border-2 border-primary-400 laptop:border-none"
-              ),
-              selectedNavigationItem.key !== navigationItem.key && (
-                'hover:animate-bounce'
+   <Fragment>
+    { selectedNavigationItem && (
+      <Navigation 
+       className="laptop:ml-4 laptop:top-36"
+       activeItem={{...selectedNavigationItem, index: navigationItemIndex}}
+      >
+        {NAVIGATOR_ITEMS.map((navigationItem, navigationItemIdx) => (
+          <Box 
+            key={navigationItem.key}
+            onMouseEnter={() => onMouseEnter?.(navigationItem as INavigationItem)}
+            onMouseLeave={() => onMouseLeave?.()}
+            className={
+              tailwindUtil(
+                "rounded-full",
+                selectedNavigationItem.key === navigationItem.key && (
+                  "bg-primary-800 border-2 border-primary-400 laptop:border-none"
+                ),
+                selectedNavigationItem.key !== navigationItem.key && (
+                  'hover:animate-bounce'
+                )
               )
-            )
-          } 
-        >
-          <IconButton
-            icon={navigationItem.icon}
-            onClick={() => handleOnSelectedItem(navigationItem, navigationItemIdx)}
-            active={selectedNavigationItem.key === navigationItem.key}
-            label={navigationItem.label}
-          />
-        </Box>
-        ))}
-    </Navigation>
+            } 
+          >
+            <IconButton
+              icon={navigationItem.icon}
+              onClick={() => handleOnSelectedItem(navigationItem, navigationItemIdx)}
+              active={selectedNavigationItem.key === navigationItem.key}
+              label={navigationItem.label}
+            />
+          </Box>
+          ))}
+      </Navigation>
+    )}
+   </Fragment>
   );
 };
 

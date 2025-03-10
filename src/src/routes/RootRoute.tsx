@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Base from '../Base';
 import webRoutes from './webRoutes';
+import GamePage from '../pages/GamePage';
 
 const RootRoute = () => {
   return (
@@ -13,6 +14,7 @@ const RootRoute = () => {
             ))
           }
         </Route>
+        <Route path='/game' Component={GamePage}/>
       </Routes>
     </BrowserRouter>
   );
