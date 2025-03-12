@@ -1,11 +1,12 @@
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   
   private positionText!: Phaser.GameObjects.Text;
-  private debug = true;
+  private textureName: string;
+  private debug = false;
 
   constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
-
+    this.textureName = texture;
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.create();
@@ -21,28 +22,32 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
     
     this.showPosition();
+
   }
 
   update(cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
     if(this.debug) {
       this.positionText.setText(`Player X: ${Math.round(this.x)}, Y: ${Math.round(this.y)}`);
     }
-
+    const speedX = 250;
     if (!cursors) return;
-    const { left, right, space,  } = cursors;
+    const { left, right, space, up  } = cursors;
     if (left.isDown) {
-      this.setVelocityX(-160);
+      this.setVelocityX(-speedX);
       this.anims.play("left", true);
       } else if (right.isDown) {
-        this.setVelocityX(160);
+        this.setVelocityX(speedX);
         this.anims.play("right", true);
       } else {
         this.setVelocityX(0);
         this.anims.play("turn");
       }
 
-      if (space.isDown && this?.body?.touching.down) { 
-        this.setVelocityY(-400);
+      if (up.isDown && this?.body?.touching.down) { 
+        this.setVelocityY(-455);
+      }
+      if(space.isDown) {
+        alert('yes');
       }
   }
 
@@ -50,30 +55,50 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   {
     this.anims.create({
       key: "left",
-      frames: this.anims.generateFrameNumbers("player", { start: 0, end: 3 }),
+      frames: this.anims.generateFrameNumbers(this.textureName, { start: 0, end: 3 }),
       frameRate: 10,
       repeat: -1
     });
 
     this.anims.create({
       key: "turn",
-      frames: [ { key: "player", frame: 4 } ],
+      frames: [ { key: this.textureName, frame: 4 } ],
       frameRate: 20
     });
 
     this.anims.create({
       key: "right",
-      frames: this.anims.generateFrameNumbers("player", { start: 5, end: 8 }),
+      frames: this.anims.generateFrameNumbers(this.textureName, { start: 5, end: 8 }),
       frameRate: 10,
       repeat: -1
     });
+  }
+
+  knockback()
+  {
+    const knockbackX = Phaser.Math.Between(-300, 300);
+    const knockbackY = -200;
+    this.setVelocity(knockbackX, knockbackY);
+  }
+
+  hitEffect()
+  {
+    this.setTint(0xff0000);
+    this.scene.time.delayedCall(500, () => this.clearTint(), [], this);
+  }
+
+  bombHit()
+  {
+    this.anims.play("turn");
+    this.hitEffect();
+    this.knockback();
   }
 
   showPosition()
   {
     if(this.debug) {
       this.positionText = this.scene.add.text(0, 200, "X: 0, Y: 0", {
-        fontSize: "16px",
+        fontSize: "11px",
         color: "#ffffff",
         backgroundColor: "#000000",
       });

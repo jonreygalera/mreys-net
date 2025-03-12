@@ -2,16 +2,51 @@ import Phaser from "phaser";
 import { gameConfig } from "./Game";
 import Player from "./Player";
 import Platforms from "./Platforms";
+import Bomb from "./Bomb";
+import Hearts from "./Hearts";
+import { screenXY } from "../../utils/screenXY";
 // 2001-03-27
+
+const LEVEL_CONFIG = [
+  {
+    score: 1,
+    message: "Go Addy.chan Go Addy.chan Go Addy.chan Go Addy.chan Go Addy.chan"
+  },
+  {
+    score: 6,
+    bomb: 5,
+    message: "Be careful with the bomb Addy.chan"
+  },
+  {
+    score: 10,
+    bomb: 2,
+    message: "Go"
+  },
+  {
+    score: 25,
+    bomb: 2,
+    message: "Go"
+  },
+  {
+    score: 35,
+    bomb: 1,
+    message: "Go"
+  }
+]
+
 class GameScene extends Phaser.Scene {
   public player!: Player;
   public platforms!: Platforms;
   public cursors!: Phaser.Types.Input.Keyboard.CursorKeys | undefined;
-  public hearts!: Phaser.Physics.Arcade.Group;
+  public hearts!: Hearts;
   public collectedHearts: number = 0;
   public collectedHeartsText!: Phaser.GameObjects.Text;
   public bombs!: Phaser.Physics.Arcade.Group;
   public gameOver: boolean = false;
+  public starGame: boolean = false;
+  public readonly maxBomb = 10;
+  private npcMessageBox?: Phaser.GameObjects.Rectangle;
+  private npcMessageText?: Phaser.GameObjects.Text;
 
   constructor() {
     super({ key: "GameScene" });
@@ -26,42 +61,37 @@ class GameScene extends Phaser.Scene {
       "/src/assets/games/addy-adventure/player/player.png",
       { frameWidth: 32, frameHeight: 48 }
     );
-
   }
   
   create(this: GameScene) {
     this.add.image(0, 0, "background").setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
     this.cursors = this.input.keyboard?.createCursorKeys() as Phaser.Types.Input.Keyboard.CursorKeys;;
     this.platforms = new Platforms(this, "ground", gameConfig);
-    
+    this.hearts = new Hearts(this, "heart", gameConfig);
     this.platforms.createPlatforms();
-    this.collectedHeartsText = this.add.text(16, 16, "0 💔", { fontSize: "32px", color: "#fff" });
-    // this.hearts = this.physics.add.group({
-    //   key: "heart",
-    //   repeat: 11,
-    //   setXY: { x: 12, y: 0, stepX: 70 }
-    // });
+    this.hearts.createHearts();
+    this.collectedHeartsText = this.add.text(16, 16, `${this.collectedHearts} 💔`, { fontSize: "32px", color: "#fff" });
 
-    this.bombs = this.physics.add.group();
-    const playerX = 592; //  Default = 0
-    const playerY = 126 ; // Default gameConfig.height - 100
+    const playerX = 0; //  Default = 0
+    const playerY = gameConfig.height - 100 ; // Default gameConfig.height - 100
     this.player = new Player(this, playerX, playerY, "player");
 
     this.physics.add.collider(this.player, this.platforms);
+    const bombSpeed = Phaser.Math.Between(300, 500);
 
+    this.bombs = this.physics.add.group({
+      bounceX: 1,
+      bounceY: 1, 
+      collideWorldBounds: true,
+      velocityX: bombSpeed,
+      velocityY: bombSpeed,
+      maxSize: this.maxBomb
+    });
+    // this.createBomb();
     this.handleAnimation();
-  
     this.physics.add.collider(this.bombs, this.platforms);
     this.physics.add.collider(this.player, this.bombs, this.hitBomb as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback, undefined, this);
 
-    // this.hearts.children.iterate((child) => {
-    //   if (child instanceof Phaser.Physics.Arcade.Sprite) {
-    //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    //   }
-    //   return null;
-    // });
-
-    // this.physics.add.collider(this.hearts, this.platforms);
     this.physics.add.overlap(this.player, this.hearts, this.collectHeart as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback, undefined, this);
 
   }
@@ -72,38 +102,101 @@ class GameScene extends Phaser.Scene {
   }
   
   collectHeart(player: Phaser.Physics.Arcade.Sprite, heart: Phaser.Physics.Arcade.Sprite) {
-    heart.disableBody(true, true); // Hide the heart
-    this.collectedHearts += 1;
-    this.collectedHeartsText.setText(`${this.collectedHearts} 💓`);
+    heart.disableBody(true, true);
+    this.scoreUpdate(1);
+    this.rule();
+  }
 
-    if(this.hearts.countActive(true) === 0) {
-      this.hearts.children.iterate((child) => {
-        if (child instanceof Phaser.Physics.Arcade.Sprite) {
-          child.enableBody(true, child.x, 0, true, true);
-        }
-        return null;
-      });
-    
-      
-      const x = (this.player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-      const bomb = this.bombs.create(x, 16, "bomb");
-      bomb.setBounce(1);
-      bomb.setCollideWorldBounds(true);
-      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+  createBomb(numToAdd: number)
+  {
+    for(let num = 1; num <= numToAdd; num++) {
+      this.addBomb();
     }
   }
 
-  hitBomb(player: Phaser.Physics.Arcade.Sprite, bomb: Phaser.Physics.Arcade.Sprite) {
-    this.physics.pause();
-    player.setTint(0xff0000);
-    player.anims.play("turn");
+  addBomb()
+  {
+    const bombX = Phaser.Math.Between(gameConfig.width - 100, 0);
+    const bombY = Phaser.Math.Between(100, gameConfig.height - 100);
+    const bomb = new Bomb(this, bombX, bombY, "bomb");
+    this.bombs.add(bomb);
+  }
 
-    this.gameOver = true;
+  hitBomb(player: Phaser.Physics.Arcade.Sprite, bomb: Phaser.Physics.Arcade.Sprite) {
+    this.scoreUpdate(-1);
+    let targetEnabledHearts  = this.collectedHearts === 0 ? this.hearts.getLength() : this.hearts.getLength() - this.collectedHearts;
+
+    let currentEnabledHearts = this.hearts.countActive(true);
+    let heartsToEnable = Math.max(0, targetEnabledHearts - currentEnabledHearts);
+    let inactiveHearts = this.hearts.children.getArray().filter((heart) => !heart.active) as Phaser.Physics.Arcade.Sprite[];
+
+    inactiveHearts.slice(0, heartsToEnable).forEach((heart) => {
+        heart.setActive(true).setVisible(true);
+        heart.enableBody(true, heart.x, heart.y, true, true);
+    });
+
+    this.cameras.main.shake(200, 0.01);
+    this.player.bombHit();
+    bomb.destroy();
+  }
+
+  scoreUpdate(score: number = 0)
+  {
+    if(this.collectedHearts === 0 && score < 0) {
+      return;
+    }
+    this.collectedHearts += score;
+    this.collectedHeartsText.setText(`${this.collectedHearts} 💓`);
   }
 
   handleAnimation()
   {
     this.player.handleAnimation();
+  }
+
+  showNpcMessage(text: string = '') {
+    this.npcMessageBox?.destroy();
+    this.npcMessageText?.destroy();
+
+    const textWidth = 200;
+    const textHeight = 250;
+
+    const x = gameConfig.width;
+    const y = gameConfig.height;
+
+    this.npcMessageBox = this.add.rectangle(
+      x - 20, 
+      y - 170, 
+      textWidth, 
+      100, 
+      0x000000, 
+      0.8
+    )
+      .setOrigin(1, 1)
+      .setDepth(10);
+
+    this.npcMessageText = this.add.text(
+      x - textWidth,
+      y - textHeight, 
+      text, 
+      {
+        fontSize: "14px",
+        color: "#ffffff",
+        wordWrap: { width: textWidth - 20 },
+      }
+    )
+      .setOrigin(0, 0)
+      .setDepth(11);
+}
+  
+  rule()
+  {
+    const rule = LEVEL_CONFIG.find(rule => rule.score == this.collectedHearts);
+    if(rule) {
+      this.createBomb(rule?.bomb ?? 0);
+      this.showNpcMessage(rule?.message ?? 'Hello');
+
+    }
   }
 }
 
