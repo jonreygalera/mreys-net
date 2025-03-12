@@ -52,12 +52,12 @@ class GameScene extends Phaser.Scene {
   }
 
   preload(this: GameScene) {
-    this.load.image("background", "/src/assets/games/addy-adventure/background.png");
-    this.load.image("ground", "/src/assets/games/addy-adventure/platform.png");
-    this.load.image("heart", "/src/assets/games/addy-adventure/heart.png");
-    this.load.image("bomb", "/src/assets/games/addy-adventure/bomb.png");
+    this.load.image("background", "/assets/addy-adventure/background.png");
+    this.load.image("ground", "/assets/addy-adventure/platform.png");
+    this.load.image("heart", "/assets/addy-adventure/heart.png");
+    this.load.image("bomb", "/assets/addy-adventure/bomb.png");
     this.load.spritesheet("player", 
-      "/src/assets/games/addy-adventure/player/player.png",
+      "/assets/addy-adventure/player/player.png",
       { frameWidth: 32, frameHeight: 48 }
     );
   }
