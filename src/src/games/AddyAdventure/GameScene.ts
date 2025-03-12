@@ -4,7 +4,6 @@ import Player from "./Player";
 import Platforms from "./Platforms";
 import Bomb from "./Bomb";
 import Hearts from "./Hearts";
-import { screenXY } from "../../utils/screenXY";
 // 2001-03-27
 
 const LEVEL_CONFIG = [

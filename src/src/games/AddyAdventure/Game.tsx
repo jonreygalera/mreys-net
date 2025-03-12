@@ -4,9 +4,6 @@ import GameScene from "./GameScene";
 import TitleScene from "./TitleScene";
 import IGameConfig from "../../interface/IGameConfig";
 
-const MIN_WIDTH = 1280;
-const MIN_HEIGHT = 720;
-
 export const gameConfig: IGameConfig = {
   width: innerWidth,
   height: innerHeight,
