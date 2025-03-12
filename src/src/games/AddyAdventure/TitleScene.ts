@@ -7,7 +7,7 @@ class TitleScene extends Phaser.Scene {
   }
 
   preload(this: TitleScene) {
-    this.load.image("background", "/src/assets/games/addy-adventure/background.png");
+    this.load.image("background", "/assets/addy-adventure/background.png");
   }
   
   create(this: TitleScene) {
@@ -31,6 +31,5 @@ class TitleScene extends Phaser.Scene {
   }
 
 }
-
 
 export default TitleScene;
