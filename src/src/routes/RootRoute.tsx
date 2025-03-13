@@ -14,7 +14,7 @@ const RootRoute = () => {
             ))
           }
         </Route>
-        <Route path='/game/addy-adventure' Component={GamePage}/>
+        <Route path='/addy-adventure' Component={GamePage}/>
       </Routes>
     </BrowserRouter>
   );
