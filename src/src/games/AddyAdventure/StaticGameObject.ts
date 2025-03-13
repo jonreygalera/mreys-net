@@ -1,6 +1,6 @@
 import IGameConfig from "../../interface/IGameConfig";
 
-export default class Character extends Phaser.Physics.Arcade.Sprite {
+export default class StaticGameObject extends Phaser.Physics.Arcade.Sprite {
   
   public positionText!: Phaser.GameObjects.Text;
   public textureName: string;
@@ -10,22 +10,9 @@ export default class Character extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, texture);
     this.textureName = texture;
     scene.add.existing(this);
-    scene.physics.add.existing(this);
+    scene.physics.add.staticGroup().add(this);
     this.gameConfig = gameConfig;
-    this.create();
-  }
-
-  create()
-  {
-    this.setBounce(0.2);
-    this.setCollideWorldBounds(true);
-
-    if (this?.body) {
-      (this.body as Phaser.Physics.Arcade.Body).setGravityY(300);
-    }
-    
     this.showPosition();
-
   }
 
   showPosition()

@@ -4,8 +4,6 @@ import { basedScreenSize } from "./Game";
 export default class Hearts extends Phaser.Physics.Arcade.StaticGroup {
   public texture: string;
   public gameConfig: IGameConfig;
-  private debug = false;
-  private indexOnly = true;
 
   constructor(scene: Phaser.Scene, texture:string, gameConfig: IGameConfig) {
     super(scene.physics.world, scene);
@@ -66,7 +64,7 @@ export default class Hearts extends Phaser.Physics.Arcade.StaticGroup {
       { index: 34, x: 324, y: 220 },
       { index: 35, x: 596, y: 40 },
       { index: 36, x: 500, y: 90 },
-      { index: 37, x: 1095, y: 370 },
+      { index: 37, x: 1000, y: 370 },
       { index: 38, x: 790, y: 90 },
       { index: 39, x: 860, y: 90 },
       { index: 40, x: 500, y: 250 },
@@ -87,9 +85,9 @@ export default class Hearts extends Phaser.Physics.Arcade.StaticGroup {
       const scaledY = gameHeight - (refHeight - y) * scaleY;
   
       const heartObject = this.create(scaledX, scaledY, texture);
-      
-      if (this.debug) {
-        this.scene.add.text(scaledX, scaledY - 20, this.indexOnly ? `${index}` : `(${scaledX}, ${scaledY}, ${index})`, {
+      const { debug, indexOnly }  = this.gameConfig.debugger;
+      if (debug) {
+        this.scene.add.text(scaledX, scaledY - 20, indexOnly ? `${index}` : `(${scaledX}, ${scaledY}, ${index})`, {
           fontSize: "8px",
           color: "#ffffff",
         }).setOrigin(0).setDepth(1);

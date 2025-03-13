@@ -3,9 +3,33 @@ import Character from "./Character";
 import { basedScreenSize } from "./Game";
 
 export default class Player extends Character {
+  public shieldTextureName?: string;
+  public shieldSkill?: Phaser.Physics.Arcade.Sprite;
+  public shieldCollider?: Phaser.Types.Physics.Arcade.ArcadeColliderType;
+  public shieldCounter = 5;
+  public shieldCounterText?: Phaser.GameObjects.Text;
 
   constructor(scene: Phaser.Scene, x: number, y: number, texture: string, gameConfig: IGameConfig) {
     super(scene, x, y, texture, gameConfig);
+  }
+
+  createShield(shieldTextureName: string, shieldCollider: Phaser.Types.Physics.Arcade.ArcadeColliderType)
+  {
+    this.shieldTextureName = shieldTextureName;
+    this.shieldCollider = shieldCollider;
+
+    this.shieldCounterText = this.scene.add.text(150, 16, `${this.shieldCounter}🐈`, { fontSize: "32px", color: "#fff" });
+  }
+
+  addShield(numberOfShield: number)
+  {
+    this.shieldCounter += numberOfShield;
+    this.renderShieldText();
+  }
+
+  renderShieldText()
+  {
+    this.shieldCounterText?.setText(`${this.shieldCounter}🐈`);
   }
 
   update(cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
@@ -33,7 +57,7 @@ export default class Player extends Character {
       this.scene.sound.play("jump");
     }
     if(space.isDown) {
-      alert('yes');
+      this.summonSkill();
     }
   }
 
@@ -57,6 +81,38 @@ export default class Player extends Character {
       frames: this.anims.generateFrameNumbers(this.textureName, { start: 5, end: 8 }),
       frameRate: 10,
       repeat: -1
+    });
+  }
+
+  summonSkill()
+  {
+    if(!this.shieldTextureName || this.shieldSkill || !this.shieldCollider || this.shieldCounter < 1) return;
+    this.shieldCounter--;
+    this.renderShieldText();
+
+    this.shieldSkill = this.scene.physics.add.sprite(this.x, this.y, this.shieldTextureName)
+      .setOrigin(0.5)
+      .setDepth(5)
+      .setAlpha(0.5);
+      
+    this.shieldSkill.setCircle(50);
+    if (this.shieldSkill.body instanceof Phaser.Physics.Arcade.Body) {
+      this.shieldSkill.body.setAllowGravity(false);
+      this.shieldSkill.body.immovable = true;
+      this.shieldSkill.body!.setOffset(
+        this.shieldSkill.width / 2 - 50, // Adjust X to center
+        this.shieldSkill.height / 2 - 50 // Adjust Y to center
+      );
+    }
+
+    this.scene.physics.add.collider(this.shieldSkill, this.shieldCollider, (_shield, collider) => {
+      this.scene.sound.play("explosion");
+      collider.destroy();
+    });
+
+    this.scene.time.delayedCall(100, () => {
+      this.shieldSkill?.destroy();
+      this.shieldSkill = undefined;
     });
   }
 

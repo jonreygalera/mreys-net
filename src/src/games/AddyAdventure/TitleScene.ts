@@ -24,7 +24,7 @@ class TitleScene extends Phaser.Scene {
     backgroundMusic.play();
     this.add.image(0, 0, "background").setOrigin(0, 0).setDisplaySize(this.scale.width, this.scale.height);
 
-    this.add.text(this.scale.width / 2, this.scale.height / 3, "Addy-chan", {
+    this.add.text(this.scale.width / 2, this.scale.height / 3, "Addy.chan", {
       fontSize: "48px",
       color: "#ffffff",
     }).setOrigin(0.5);

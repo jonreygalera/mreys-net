@@ -33,7 +33,10 @@ const Game = () => {
           debug: gameConfig.debugger?.debug,
         },
       },
-      scene: [TitleScene, GameScene],
+      scene: [
+        TitleScene, 
+        GameScene
+      ],
       parent: gameRef.current || undefined,
     };
 
