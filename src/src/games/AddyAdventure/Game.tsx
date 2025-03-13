@@ -12,7 +12,7 @@ export const basedScreenSize = {
 export const gameConfig: IGameConfig = {
   width: innerWidth,
   height: innerHeight,
-  debugger: { debug: true, indexOnly: true}
+  debugger: { debug: false, indexOnly: true}
 };
 
 const gravity = 500;
