@@ -1,54 +1,40 @@
-export default class Player extends Phaser.Physics.Arcade.Sprite {
-  
-  private positionText!: Phaser.GameObjects.Text;
-  private textureName: string;
-  private debug = false;
+import IGameConfig from "../../interface/IGameConfig";
+import Character from "./Character";
+import { basedScreenSize } from "./Game";
 
-  constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
-    super(scene, x, y, texture);
-    this.textureName = texture;
-    scene.add.existing(this);
-    scene.physics.add.existing(this);
-    this.create();
-  }
+export default class Player extends Character {
 
-  create()
-  {
-    this.setBounce(0.2);
-    this.setCollideWorldBounds(true);
-
-    if (this?.body) {
-      (this.body as Phaser.Physics.Arcade.Body).setGravityY(300);
-    }
-    
-    this.showPosition();
-
+  constructor(scene: Phaser.Scene, x: number, y: number, texture: string, gameConfig: IGameConfig) {
+    super(scene, x, y, texture, gameConfig);
   }
 
   update(cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
-    if(this.debug) {
+    if(this.gameConfig.debugger.debug) {
       this.positionText.setText(`Player X: ${Math.round(this.x)}, Y: ${Math.round(this.y)}`);
     }
     const speedX = 250;
+    const baseHeight = basedScreenSize.height;
+    const jumpVelocity = -380 * (this.scene.scale.height / baseHeight); 
     if (!cursors) return;
     const { left, right, space, up  } = cursors;
     if (left.isDown) {
-      this.setVelocityX(-speedX);
-      this.anims.play("left", true);
-      } else if (right.isDown) {
-        this.setVelocityX(speedX);
-        this.anims.play("right", true);
-      } else {
-        this.setVelocityX(0);
-        this.anims.play("turn");
-      }
+    this.setVelocityX(-speedX);
+    this.anims.play("left", true);
+    } else if (right.isDown) {
+      this.setVelocityX(speedX);
+      this.anims.play("right", true);
+    } else {
+      this.setVelocityX(0);
+      this.anims.play("turn");
+    }
 
-      if (up.isDown && this?.body?.touching.down) { 
-        this.setVelocityY(-455);
-      }
-      if(space.isDown) {
-        alert('yes');
-      }
+    if (up.isDown && this?.body?.touching.down) { 
+      this.setVelocityY(jumpVelocity);
+      this.scene.sound.play("jump");
+    }
+    if(space.isDown) {
+      alert('yes');
+    }
   }
 
   handleAnimation()
@@ -94,14 +80,4 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.knockback();
   }
 
-  showPosition()
-  {
-    if(this.debug) {
-      this.positionText = this.scene.add.text(0, 200, "X: 0, Y: 0", {
-        fontSize: "11px",
-        color: "#ffffff",
-        backgroundColor: "#000000",
-      });
-    }
-  }
 }

@@ -1,4 +1,5 @@
 import IGameConfig from "../../interface/IGameConfig";
+import { basedScreenSize } from "./Game";
 
 export default class Hearts extends Phaser.Physics.Arcade.StaticGroup {
   public texture: string;
@@ -18,11 +19,9 @@ export default class Hearts extends Phaser.Physics.Arcade.StaticGroup {
     const gameWidth = this.gameConfig.width;
     const texture = this.texture;
     
-    // Reference resolution
-    const refWidth = 1280;
-    const refHeight = 720;
+    const refWidth = basedScreenSize.width;
+    const refHeight = basedScreenSize.height;
   
-    // Scale factor for different screen sizes
     const scaleX = gameWidth / refWidth;
     const scaleY = gameHeight / refHeight;
   

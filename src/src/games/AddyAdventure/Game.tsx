@@ -4,9 +4,15 @@ import GameScene from "./GameScene";
 import TitleScene from "./TitleScene";
 import IGameConfig from "../../interface/IGameConfig";
 
+export const basedScreenSize = {
+  width: 1280,
+  height: 720
+}
+
 export const gameConfig: IGameConfig = {
   width: innerWidth,
   height: innerHeight,
+  debugger: { debug: true, indexOnly: true}
 };
 
 const gravity = 500;
@@ -24,7 +30,7 @@ const Game = () => {
         default: "arcade",
         arcade: {
           gravity: { y: gravity, x: 0 },
-          debug: false,
+          debug: gameConfig.debugger?.debug,
         },
       },
       scene: [TitleScene, GameScene],
