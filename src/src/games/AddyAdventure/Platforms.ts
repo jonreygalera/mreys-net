@@ -44,7 +44,7 @@ export default class Platforms extends Phaser.Physics.Arcade.StaticGroup {
         { index: 11, x: 0, y: 190, width: 550, height: 2.5 },
         { index: 12, x: 595, y: 108, width: 5, height: 1 },
         { index: 13, x: 600, y: 137, width: 5, height: 0.1 },
-        { index: 14, x: 300, y: 108, width: 300 , height: 0.3 },
+        { index: 14, x: 350, y: 108, width: 300 , height: 0.3 },
         { index: 15, x: 828, y: 120, width: 120, height: 0.25 },
         { index: 16, x: 828, y: 128, width: 10, height: 5 },
         { index: 17, x: 928, y: 179, width: 10, height: 5 },
